@@ -9,7 +9,7 @@ var sql = require(ROOT_PATH + '/system/Model/sql');
 mysql = function(){
 
     sql.sql.apply(this, arguments);
-
+console.log(this.queryScheme);
     var mysql = require('mysql');
     var connection = mysql.createConnection({
         host: this.config.host,
@@ -34,7 +34,7 @@ mysql = function(){
         });
         var proc = connection.query(text, function(err, row, fields){
             if( err ){
-                that.emm.emit('dberror')
+                that.emm.emit('dberror');
             } else{
                 that.row = row;
                 that.emm.emit('dbOK');
@@ -43,7 +43,7 @@ mysql = function(){
         connection.end();
         return proc;
 
-    }
-}
+    };
+};
 
 exports.DB = mysql;

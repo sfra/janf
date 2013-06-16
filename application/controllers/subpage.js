@@ -124,7 +124,10 @@ var subpage = function(){
           var that = this;
 
         var db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
-        
+       
+       console.log(db.queryScheme);
+       db.select("name").where("name = ? AND id > ?",[["John","[A-Za-z]+"],["9","[0-9]+"]]);
+              console.log(db.queryScheme);
         var proc = db.query('SELECT * FROM clients');
 
         db.emm.on('dberror',function(){
@@ -141,7 +144,7 @@ var subpage = function(){
             });
 
         db.emm.on('dbOK',function(){
-               
+             
                   view.getCnf().properties.results=db.row;
                   
                   view.parse();

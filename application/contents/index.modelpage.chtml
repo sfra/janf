@@ -1,4 +1,4 @@
-        Model is in a very basic form. It supports MySql databases so far.<br />
+        Model is in a very basic form. It supports MySql and Postgresql databases so far.<br />
          However it implements loading the data in the background, when the page is rendering.
          For this aim it uses webworkers and socket. <br .>
         If you want to use mysql connection, you must provide some configuration. Namelly, edit
