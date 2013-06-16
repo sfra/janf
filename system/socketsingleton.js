@@ -1,5 +1,11 @@
 
 var io = require('socket.io');
+/**
+ * @class sigleton class storing singleton
+ * @constructor
+ * @returns {Socketsingleton}
+ */
+
 Socketsingleton = function(){
     var instance;
 

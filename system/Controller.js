@@ -19,12 +19,13 @@ var currentController;
 /**
  * @class Controller
  * @constructor
- * @param {Object} request
- * @param {Object} response
- * @param {String} controller name
- * @param {String} action name
- * @param {Object} get parameters
- * @param {String} initial data
+ * @param {Object} req request
+ * @param {Object} res response
+ * @param {String} contr controller name
+ * @param {String} act action name
+ * @param {Object} GET get parameters
+ * @param {String} dane initial data
+ * @param {String} mimetype
  */
 Controller = function(req, res, contr, act, GET, dane, mimetype){
     var ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
@@ -66,6 +67,10 @@ Controller = function(req, res, contr, act, GET, dane, mimetype){
 
 };
 
+/**
+ * Caches the page according to the request url
+ * @param{String} data
+ */
 Controller.prototype.setCache = function(data){
 
     var hash = this.crypto.createHash("sha1").update(this.req.url);
@@ -80,7 +85,11 @@ Controller.prototype.setCache = function(data){
 
 }
 
-
+/**
+ * retrieves the cache only if the cached file is not older than period
+ * @param {Number} period time in miliseconds
+ * returns {String}
+ */
 Controller.prototype.getCache = function(period){
     console.log("CACHE", this.req.url);
     var hash = this.crypto.createHash("sha1").update(this.req.url);
@@ -123,7 +132,7 @@ Controller.prototype.getContent=function(file){
 Controller.prototype.crypto = require('crypto');
 Controller.prototype.libs = require(ROOT_PATH + "/system/libfile");
 Controller.prototype.moment = require('moment');
-//console.log(require('moment')());
+
 
 
 exports.Controller = Controller;

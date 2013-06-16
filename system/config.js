@@ -90,7 +90,11 @@ Config = function(file){
 
 
 
-
+/**
+ * removes white spaces from the beginning and the end of the string
+ * @param{string} s
+ * @returns{string}
+ */
     function trimString(s){
         //return s.replace(/^\s+|\s+$/g, "");
     return s.replace(/^\s+|\s+$/g, "");

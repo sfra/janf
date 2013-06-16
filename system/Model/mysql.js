@@ -9,7 +9,8 @@ var sql = require(ROOT_PATH + '/system/Model/sql');
 mysql = function(){
 
     sql.sql.apply(this, arguments);
-console.log(this.queryScheme);
+
+    
     var mysql = require('mysql');
     var connection = mysql.createConnection({
         host: this.config.host,

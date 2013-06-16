@@ -66,7 +66,7 @@ var subpage = function(){
 
         db.emm.on('dberror',function(){
             view.getCnf().properties.content = "Something wrong with connection happened.<br /> The current connection"+
-            "is suported by postgresql, so if you are using mysql you must change the line"+
+            "is suported by postgresql, so if you are use mysql you must change the line"+
             "<pre> var db = this._Model.ModelFactory({ host: APP_URL }, \"postgresql\");</pre> by"+
             " <pre>var db = this._Model.ModelFactory({ host: APP_URL }, \"mysql\");</pre>"+
             "in the current action of subpage controller";
@@ -105,34 +105,27 @@ var subpage = function(){
 
         var navi= new this._View.View('/navi.nhtml','/navi.conf');
         libs.switchValues(navi.getCnf().properties.list, 'li', 'Database 2', 'current', '1', '0');
-       
-
-        
-       // view.getCnf().properties.content = libs.toString(ROOT_PATH+"/application/contents/subpage.databasesec.chtml");
         view.getCnf().properties.content=this.getContent("/subpage.databasesec.chtml");
-        
-        
-        
         view.getCnf().properties.valueFromNodeJS = 112;
         view.getCnf().properties.title = "Database second";
         navi.parse();
-        
         view.getCnf().properties.navi= navi.render();
         
         
         
-          var that = this;
+       var that = this;
 
-        var db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
+       var db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
        
        console.log(db.queryScheme);
-       db.select("name").where("name = ? AND id > ?",[["John","[A-Za-z]+"],["9","[0-9]+"]]);
+       db.select("name, city").from("clients").where("name = ? AND id > ?",[["John","[A-Za-z]+"],["9","[0-9]+"]]);
               console.log(db.queryScheme);
-        var proc = db.query('SELECT * FROM clients');
+           var proc=   db.exec();
+//        var proc = db.query('SELECT * FROM clients');
 
         db.emm.on('dberror',function(){
             view.getCnf().properties.content = "Something wrong with connection happened.<br /> The current connection"+
-            "is suported by mysql, so if you are using postgresql you must change the line"+
+            "is suported by mysql, so if you use postgresql you must change the line"+
             "<pre> var db = this._Model.ModelFactory({ host: APP_URL }, \"mysql\");</pre> by"+
             " <pre>var db = this._Model.ModelFactory({ host: APP_URL }, \"postgresql\");</pre>"+
             "in the current action of subpage controller";
@@ -188,7 +181,7 @@ var subpage = function(){
         
              db.emm.on('dberror',function(){
             contentForSocket = "Something wrong with connection happened.<br /> The current connection"+
-            "is suported by mysql, so if you are using postgresql you must change the line"+
+            "is suported by mysql, so if you use postgresql you must change the line"+
             "<pre> var db = this._Model.ModelFactory({ host: APP_URL }, \"mysql\");</pre> by"+
             " <pre>var db = this._Model.ModelFactory({ host: APP_URL }, \"postgresql\");</pre>"+
             "in the current action of subpage controller";

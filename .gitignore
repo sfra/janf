@@ -6,3 +6,5 @@ build.xml
 privateData.js
 application/cache
 nbproject
+doc
+tools
