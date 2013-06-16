@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="utf8" />
+        <link rel="stylesheet" type="text/css" href="${baseurl}$/resources/css/${css}$" />
+        <title>${title}$ ${frameworkname}$</title>
+        
+        </head>
+    <body>
+       
+  
+  <div id="main">
+  <nav>
+    
+      <ul>
+[[list
+        <li ${if current equals 1 {class="current"}}$><a href="{href}">{li}</a></li>
+list]]
+      </ul>
+      
+        </nav>
+<div id="info">
+</div> 
+<section>${content}$</section>
+  </div>
+  <footer>Szymon Frankowski 2013</footer>
+</body>
+</html>

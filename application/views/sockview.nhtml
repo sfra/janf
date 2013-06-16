@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>${title}$</title>
+    </head>
+    <body>
+    ${HTMLhelper img(/fruits/apple.jpg)}$
+    <h1 style="color:${col}$>:++:Results:++:</h1>
+    <div id="cont"></div>
+    ${content}$
+    </body>
+</html>

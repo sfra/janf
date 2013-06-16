@@ -1,0 +1,90 @@
+Methods of the instation of Controller (actions) loads the view with
+ the typical parameters. Url index/subpage executes the action subpage of the controller index.
+Additionally index/subpage/user/Jan/age/22 maps to the associtive array this._GET[user=>Jan,age=>22],
+reachable from the controller.<br />
+The controller index with one void action index looks like
+<pre>var ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
+var Controller = require(ROOT_PATH + '/system/Controller');
+var libs=require(ROOT_PATH+"/system/libfile");
+var socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
+/**
+* @class index
+* @constructor
+* @inherits Controller.Controller
+*/
+var index = function(){
+
+    Controller.Controller.apply(this, arguments);
+
+/*initial values*/
+       
+
+    //begin actions
+
+    this.index = function(){
+
+      
+
+    }
+
+
+
+    //end actions
+
+
+    //execute action
+    this[this.act]();
+
+}
+
+index.prototype=Controller.Controller.prototype;
+exports.index= index;
+</pre>
+Replace the only action
+
+<pre>var ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
+var Controller = require(ROOT_PATH + '/system/Controller');
+var libs=require(ROOT_PATH+\"/system/libfile\");
+var socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
+/**
+* @class index
+* @constructor
+* @inherits Controller.Controller
+*/
+var index = function(){
+
+    Controller.Controller.apply(this, arguments);
+
+/*initial values*/
+       
+
+    //begin actions
+
+    this.index = function(){
+
+
+
+        var view = new this._View.View('/mview.nhtml');
+        view.getCnf().properties.content ='&lt;h1&gt;Hello there!&lt;/h1&gt;';
+
+        view.parse();
+        dane = view.render();
+        this.res.end(dane);
+
+      
+
+    }
+
+
+
+    //end actions
+
+
+    //execute action
+    this[this.act]();
+
+}
+
+index.prototype=Controller.Controller.prototype;
+exports.index= index;
+</pre>

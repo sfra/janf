@@ -1,0 +1,21 @@
+This page sends the array of results from mysql database, and inserts it
+immediately into template form, without any processing inside the controller.<br />
+Instead of coding
+
+<pre>
+  for (var i=0, max=db.row.length; i&lt;max; i++ ) {
+                    view.getCnf().properties.content+=db.row[i]['name']+"|"+db.row[i]['city']+ "&lt;br /&gt;";
+                  };
+</pre>
+
+just put
+
+<pre>
+view.getCnf().properties.results=db.row;
+</pre>
+to fill the template
+
+
+<pre>
+&#91;&#91;results name: {name} city: {city}&lt;br /&gt; results&#93;&#93;
+</pre>

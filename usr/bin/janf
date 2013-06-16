@@ -1,0 +1,282 @@
+#!/usr/local/bin/node
+
+/* command line tool for creating applications and controllers, adding actions */
+
+var child_process = require('child_process');
+var JANFPATH=require(__dirname+'/../../../privateData').privateData.JANFPATH;   /* set your path to the folder janf */
+var fs = require('fs');                                                         /* containing  folder data */
+var CWD=process.cwd();
+
+var make={};
+make.app=make_app;
+make.controller=make_controller;
+var add={};
+add.action=add_action;
+
+
+
+var command=process.argv[2];
+var obj=process.argv[3];
+var name=process.argv[4];
+var name2=process.argv[5];
+
+if( command=="make" ){
+    
+    if ( !obj || (!name && obj=="controller") ) {
+        show_help();
+        process.exit();
+    }
+    
+    make[obj](name);
+    
+}
+
+if( command=="add" ){
+    if ( !obj || !name || !name2 ) {
+        show_help();
+        process.exit();
+    }
+    console.log(name,name2);
+    add[obj](name,name2);
+}
+
+
+if ( command=="show") {
+    if ( obj=="controllers" ) {
+        fs.readdir(CWD+"/application/controllers", function(er,data){
+            for (var i=0,max=data.length;i<max;i++) {
+                console.log(data[i].replace(/.js$/,""));
+            }
+            });
+    }
+    
+    if ( obj=="actions" ) {
+        findActions(name);
+        
+    }
+    
+}
+
+
+if( command=="help" ){
+   show_help();
+}
+
+
+/**
+ * Creates application in a current folder
+ * @returns {void}
+ */
+
+function make_app() {
+ 
+var tar = child_process.exec('tar -xzvf '+JANFPATH+'/data/make_app/skel.tar.gz', function (error, stdout, stderr) {
+   if (error) {
+     console.log(error.stack);
+     console.log('Error: '+error.code);
+     console.log('Signal: '+error.signal);
+   }
+   console.log('stdout: '+stdout);
+   console.log('stderr: '+stderr);
+ });
+
+ tar.on('exit', function (code) {
+   console.log('Exited with exit code '+code);
+ });
+
+ 
+ 
+}
+
+//make app end
+
+ 
+ /**
+ * Creates controller in the folder application/controllers/ for a given controller name 
+ * @param {string} controller
+ * @returns {Number}
+ */
+ 
+ function make_controller(controller) {
+    
+    fs.exists(CWD+"/application/controllers/"+controller+".js", function(exists) {
+              //  console.log(exists);
+                if( exists ){
+                    console.log("The controller "+controller+" already exists!" );
+                } else {
+             
+                
+                fs.readFile(JANFPATH+'/data/make_app/controller.js', 'utf8', function (err,data) {
+                    if( err ) {
+                     return console.log(err);
+                      }
+                 data=data.replace(/%CONTROLLER%/g,controller);     
+                 //console.log(data);
+                 
+                 fs.writeFile(CWD+"/application/controllers/"+controller+".js", data, function (err) {
+  if (err) return console.log(err);
+  console.log('Controller ready');
+  return 0;
+});
+                 
+                 return 0;
+                 
+                 
+                });
+                
+                   
+    
+        }
+});
+}
+
+//make_controller end
+
+
+/**
+ * Adds action to controller 
+ * @param {string} controller
+ * @param {string} action
+ * @returns {Number}
+ */
+
+function add_action(controller,action) {
+        fs.readFile(CWD+"/application/controllers/"+controller+".js", 'utf8', function (err,data) {
+            if( err ){
+                return console.log(err);
+            }
+         
+         
+         var actions=extractActions(data);
+            
+            for( var i=0, max=actions.length; i<max; i++ ){
+                if (actions[i]==action) {
+                    console.log("Action "+action+" is already in controller "+controller+"!");
+                    return 1;
+                }
+            }
+            
+            
+            var replacement=data.replace(/\/\/end\sactions/,"this."+action+" = function(){\n};\n\n//end actions");
+  
+  
+                   fs.writeFile(CWD+"/application/controllers/"+controller+".js", replacement, function (err) {
+  if( err ) return console.log(err);
+  console.log('Action added to controller');
+  return 0;
+});
+ 
+        });
+}
+
+//add_action end 
+
+
+function findActions(controller,action) {
+       fs.readFile(CWD+"/application/controllers/"+controller+".js", 'utf8', function (err,data) {
+            if( err ){
+                return console.log(err);
+            }
+         
+            var actions=extractActions(data);
+           
+            for ( var i=0,max=actions.length;i<max;i++) {
+                console.log(controller+"/"+actions[i]);
+            }
+            
+            })
+
+}
+
+function extractActions(data) {
+          var start=data.search(/\/\/begin\sactions/)+16;
+            
+            var end=data.search(/\/\/end\sactions/);
+            var piece=data.substring(start,end);
+            var actions=[];
+            var curr;
+            
+            while( true ) {
+                curr=findAction(piece);
+             //   console.log(curr);
+                if( curr[0]==undefined ) {
+                    break;
+                }
+                actions.push(curr[0]);
+                piece=curr[1];
+            }
+            return actions;
+}
+
+
+/**
+ * Finds the name of the action occuring in text. Returned value is of the form [the name of the action, the rest of text] 
+ * @param {string} text
+ * @returns {Array}
+ */
+
+function findAction(text) {
+    var out=[undefined,undefined];
+    var start=text.search(/this\.([A-Za-z][A-Za-z0-9]*)\s*=\s*function/);
+    var act=RegExp.$1;
+    var bd=findBody(text);
+    if (!!bd) {
+        out[0]=act;
+        out[1]=text.slice(bd[1]+1);
+    }
+    return out;
+    
+}
+
+
+/**
+ * Extracts the body part of a given text string
+ * @param {string} text
+ * @returns {Array}
+ */
+
+
+function findBody(text) {
+    var beg=0;
+    var fin=text.length-1;
+    var polar=0;
+    var out=false;
+    for( var i=beg; i<fin; i++ ) {
+        if (text.charAt(i)=="{") {
+            polar=-1;
+            out=[];
+            out[0]=i;
+            i=fin;           
+        }
+        
+        if( text.charAt(i)=="}" ) {
+            return false;
+        }
+    }
+    
+  
+    for( var i=out[0]+1; i<fin; i++ ) {
+        switch (text.charAt(i)) {
+            case "{": polar-=1; break;
+            case "}": polar+=1; break;
+        }
+        if (polar==0) {
+            out[1]=i; i=fin;
+        }
+    }
+
+    if( out[1]==undefined ) return false;    
+      return out;
+    
+}
+
+
+function show_help() {
+      console.log("USAGE");
+    console.log("=====");
+    console.log("janf make app");
+    console.log("janf make controller <controller name>");
+    console.log("janf add action <controller name> <action name>");
+    console.log("janf show controllers");
+    console.log("janf show actions <controller name>");
+}

@@ -1,0 +1,8 @@
+.komodotools
+*.komodoproject
+*.*~
+*~
+build.xml
+privateData.js
+application/cache
+nbproject

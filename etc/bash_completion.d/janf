@@ -1,0 +1,96 @@
+
+_janf() 
+{
+    local cur prev optsM optsA optsH optsC optsAdd
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    optsM="make"
+    optsA="add"
+    optsH="help"
+	optsS="controllers actions"
+	optsSS="show"
+    optsC="app controller"
+
+    optsAdd="action"
+    
+	
+	#ARRAY= ${ARRAY//.js/}
+		#ARRAY=${ARRAY/\n/}
+	if [[ ${prev} == make ]] ; then
+        COMPREPLY=( $(compgen -W "${optsC}" --  ${cur}) )
+        return 0
+    fi
+
+	
+
+	if [[ ${prev} == action ]] ; then
+	
+	ARRAY=`cd application/controllers/ && ls`
+	ARRAY=${ARRAY%%' '}
+
+	ARRAY=`echo $ARRAY | sed s/.js//g`
+        COMPREPLY=( $(compgen -W "${ARRAY}" --  ${cur}) )
+  #      IFS=$' \t\n'
+        return 0
+    fi
+	
+	
+	
+	if [[ ${prev} == actions ]] ; then
+	
+	ARRAY=`cd application/controllers/ && ls`
+	ARRAY=${ARRAY%%' '}
+
+	ARRAY=`echo $ARRAY | sed s/.js//g`
+        COMPREPLY=( $(compgen -W "${ARRAY}" --  ${cur}) )
+  #      IFS=$' \t\n'
+        return 0
+    fi
+	
+	
+	
+
+	if [[ ${prev} == add ]] ; then
+        COMPREPLY=( $(compgen -W "${optsAdd}" --  ${cur}) )
+        return 0
+    fi
+	
+	
+	if [[ ${prev} == show ]] ; then
+        COMPREPLY=( $(compgen -W "${optsS}" --  ${cur}) )
+        return 0
+    fi
+	
+
+
+	if [[ ${cur} == m* ]] ; then
+        COMPREPLY=( $(compgen -W "${optsM}" --  ${cur}) )
+        return 0
+    fi
+
+    
+   if [[ ${cur} == a* ]] ; then
+        COMPREPLY=( $(compgen -W "${optsA}" --  ${cur}) )
+        return 0
+    fi
+
+
+    if [[ ${cur} == h* ]] ; then
+        COMPREPLY=( $(compgen -W "${optsH}" --  ${cur}) )
+        return 0
+    fi
+
+
+	 if [[ ${cur} == s* ]] ; then
+        COMPREPLY=( $(compgen -W "${optsSS}" --  ${cur}) )
+        return 0
+    fi
+	
+
+
+
+
+   
+}
+complete -F _janf janf

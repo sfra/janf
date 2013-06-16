@@ -1,0 +1,12 @@
+janf provides command line tool. Put the file janf, which is located in usr/bin,
+somewhere on your PATH. Moreover, move the folder janf, <br />and change the value of the variable JANFPATH in the
+mentioned file janf, to indicate the folder janf. Optionally you can take the file etc/bash_completion.d/janf
+ and put it to your folder /etc/bash_completion.d/<br /> Now execute
+<pre>mkdir MyProject<br />cd MyProject<br />janf make app</pre>
+Then the project skeleton will be made. If you want to create new controller just put
+<pre>janf make controller supage</pre>
+You can check, that the file subpage.js appeared in folder application/controllers<br />
+Back to root of your application. Write in the command line<pre>janf add action subpage subindex</pre>
+to add action subindex to subpage controller.<br />
+At any moment you can ask for some help <pre>janf help</pre>
+        

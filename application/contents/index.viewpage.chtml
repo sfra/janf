@@ -1,0 +1,29 @@
+View is based on the system of templates. Template looks as ordinary
+html file and are located in the folder application/views/.<br /> Usually their extension is .nhtml.
+They are filled by the values defined in config files (located in application/views/config, and have
+ .config as extension)<br />
+View is in a fact a class which constructor is called in controller. View takes three paramers:<br />
+<pre>View('/mview.nhtml','/main.conf',{'color':'#330033'})</pre><br />
+The first one is a file of template on which current view is based. The second is a config file
+ (however it can equal null, when we do not want to use any ).<br /> The last one parameter is a javascript
+object which extends and overrides properties defined in config file<br />
+There is another way to define properties of view. Assume that view has been introduced:
+<pre>var view = new this._View.View('/mview.nhtml', '/main.conf', { 'color': '#330033' });</pre>
+Then the property <i>title</i> can be changed immediately in the following way
+<pre>view.getCnf().properties.title = 'Contact us';</pre>
+Template contains variables of a few types:<br />
+Atomic variables are of the form ${variable}$ which are filled by the content defined in config file
+<pre>title=Main page</pre>
+Lists which occur in template in the form
+<pre>&#91;&#91;list 
+some content 
+          list&#93;&#93;</pre>
+Inside the list local variables can occur. This types of variables has the different form, namelly {variable}<br />
+If config contains the item
+<pre>
+list=[{"cont":"hello","col":"#333221"},{"cont":"world","col":"#21ffee"},{"and others":"hello","col":"#033321"}]</pre>
+then the template
+<pre>
+&lt;ul&gt;<br />&#91;&#91;unlist &lt;li style="color:{col}">{cont}&lt;/li&gt; unlist&#93;&#93;<br />&lt;/ul&gt;</pre>
+produces
+<pre>&lt;ul&gt;<br />&lt;li style=&#34;color:#333321&#34;&gt;hello&lt;li&gt;<br />&lt;li style=&#34;color:#21ffee&#34;>world&lt;/li&gt;<br />&lt;li style=&#34;color:#0333321&#34;>and others&lt;/li&gt;<br />&lt;/ul&gt;</pre>
