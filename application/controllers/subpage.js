@@ -39,7 +39,16 @@ var subpage = function(){
         } else{
 
 
-            view.getCnf().properties.content = "You think that x=" + this._GET["x"] + " and y=" + this._GET["y"];
+            view.getCnf().properties.content = "You think that x=" + this._GET["x"] + " and y=" + this._GET["y"]+"<br />";
+            view.getCnf().properties.content+="The object _GET in the context of the current action"+
+            "has been used. It contains all parameters from the url. They are accessible by the expressions:"+
+            "<pre>this._GET[\"x\"]</pre>"+
+            
+            "However, parameters are sending in the"+
+            " following form:"+
+            "<pre>httt://domainame.org/x/valueOfx/y/valueOfy</pre>";
+            view.getCnf().properties.content+="Change the values in the url of the present page and see the results."
+            
             view.getCnf().properties.valueFromNodeJS = 112;
             view.getCnf().properties.title = "GET example";
             view.parse();
@@ -58,7 +67,7 @@ var subpage = function(){
         libs.switchValues(view.getCnf().properties.list, 'li', 'Database', 'current', '1', '0');
         var db = this._Model.ModelFactory({ host: APP_URL }, "postgresql");
         
-        console.log(db);
+
         var proc = db.query('SELECT * FROM clients');
 
         view.getCnf().properties.content = "";
@@ -114,10 +123,10 @@ var subpage = function(){
         
         
        var that = this;
-
+        console.log("APP_URL",APP_URL);
        var db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
        
-       console.log(db.queryScheme);
+       console.log(db);
        db.select("name, city").from("clients").where("name = ? AND id > ?",[["John","[A-Za-z]+"],["9","[0-9]+"]]);
               console.log(db.queryScheme);
            var proc=   db.exec();

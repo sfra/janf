@@ -1,7 +1,7 @@
 var config = { ROOT_PATH: __dirname + "/../..",
     VIEWS_PATH: __dirname + "/../../application/views",
     VIEWS_CONFIGS_PATH: __dirname + "/../../application/views/config",
-    APP_URL: "localhost",
+    APP_URL: "127.0.0.1",
     APP_PORT: 1337,
     DEFAULT_CONTROLLER : "index",
     DEFAULT_ACTION : "index"
