@@ -86,7 +86,7 @@ View is based on the system of templates. Template looks as ordinary html file a
 Usually their extension is .nhtml. They are filled by the values defined in config files (located in application/views/config, and have .config as extension)
 View is in a fact a class which constructor is called in controller. View takes three paramers:
 ```javascript
-View('/mview.nhtml','/main.conf',{'color':'#330033'})
+View('/mview.nhtml' , '/main.conf' , {'color':'#330033'})
 ```
 The first one is a file of template on which current view is based. The second is a config file (however it can equal null, when we do not want to use any ).
 The last one parameter is a javascript object which extends and overrides properties defined in config file
