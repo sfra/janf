@@ -5,7 +5,7 @@ janf is a simple MVC framework written in node.js.
 Model is in a very basic form. It supports MySql databases so far.
 However it implements loading the data in the background, when the page is rendering. For this aim it uses webworkers and socket.
 
-Installing yaml
+Installing janf
 =================
 
 1) put the folder containing:
