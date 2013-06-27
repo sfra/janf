@@ -9,4 +9,12 @@ You can check, that the file subpage.js appeared in folder application/controlle
 Back to root of your application. Write in the command line<pre>janf add action subpage subindex</pre>
 to add action subindex to subpage controller.<br />
 At any moment you can ask for some help <pre>janf help</pre>
-        
+
+Moreover you can obtain the list of all controllers of the application by putting
+<pre>
+janf show controllers
+</pre>
+If you are interested in the particular controller, say subpage, the console will show you the answer
+<pre>
+janf show actions subpage
+</pre>

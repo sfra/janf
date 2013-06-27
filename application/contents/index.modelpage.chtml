@@ -15,7 +15,7 @@ var DBConfig = {
     //   adapter:'mysql',
     host: config.APP_URL,
     username: "login",
-    password: "sectetpassword",
+    password: "secretpassword",
     database: "shops"
 }</pre>
 If you want to test this page, you need to change two sql queries contained in file application/controllers/subpage.js.
