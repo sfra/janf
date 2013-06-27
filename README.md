@@ -1,5 +1,8 @@
 # README
-janf is a simple MVC framework written in node.js
+janf is a simple MVC framework written in node.js. Just run in the main directory
+```
+node index.js
+```
 
 ##Model
 Model is in a very basic form. It supports MySql and Postgresql databases so far.
@@ -26,7 +29,57 @@ var DBConfig = {
     database: "shops"
 }
 ```
-If you want to test this page, you need to change two sql queries contained in file application/controllers/subpage.js..
+If you want to query your database from some controller first you create Model object
+```javascript
+var db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
+```
+or
+
+```javascript
+var db = this._Model.ModelFactory({ host: APP_URL }, "postgresql");
+```
+then you can make a query, simply
+
+```javascript
+var proc = db.query('SELECT * FROM clients');
+```
+or
+
+```javascript
+db.select("name, city").from("clients").where("name = ? AND id > ?",[["John","[A-Za-z]+"],["9","[0-9]+"]]);
+```
+In the method where there are two parameters: string for which values will be substituted, and array containing
+the two element arrays as in the above example
+```javasctipt
+["John","[A-Za-z]"]
+```
+where John is the value which will be placed instead of the first question mark, only if the value match
+the regular expression /^[A-Za-z]$/. However, validation regular expression is optional.
+
+Then you can execute the prepared statement
+
+```javascript
+var proc=db.exec();
+```
+and when the answer is back, to do something with the results
+
+```javascript
+      db.emm.on('dbOK',function(){
+                
+                  for (var i=0, max=db.row.length; i<max; i++ ) {
+                    view.getCnf().properties.content+=db.row[i]['name']+"|"+db.row[i]['city']+ "<br />";
+                  };
+                  
+                  view.parse();
+                dane = view.render();
+
+                that.res.end(dane);
+                  
+                  
+                  });
+
+```
+
 
 ##View
 View is based on the system of templates. Template looks as ordinary html file and are located in the folder application/views/.
