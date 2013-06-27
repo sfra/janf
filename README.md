@@ -79,3 +79,127 @@ in the following way:
 ```javascript
 view.getCnf().properties.content = this.getContent();
 ```
+
+Methods of the instation of Controller (actions) loads the view with the typical parameters. Url index/subpage executes the action subpage of the controller index. Additionally index/subpage/user/Jan/age/22 maps to the associtive array this._GET[user=>Jan,age=>22], reachable from the controller.
+The controller index with one void action index looks like
+```javascript
+var ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
+var Controller = require(ROOT_PATH + '/system/Controller');
+var libs=require(ROOT_PATH+"/system/libfile");
+var socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
+/**
+* @class index
+* @constructor
+* @inherits Controller.Controller
+*/
+var index = function(){
+
+    Controller.Controller.apply(this, arguments);
+
+/*initial values*/
+       
+
+    //begin actions
+
+    this.index = function(){
+
+      
+
+    }
+
+
+
+    //end actions
+
+
+    //execute action
+    this[this.act]();
+
+}
+
+index.prototype=Controller.Controller.prototype;
+exports.index= index;
+```
+Replace the only action
+```javascript
+var ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
+var Controller = require(ROOT_PATH + '/system/Controller');
+var libs=require(ROOT_PATH+\"/system/libfile\");
+var socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
+/**
+* @class index
+* @constructor
+* @inherits Controller.Controller
+*/
+var index = function(){
+
+    Controller.Controller.apply(this, arguments);
+
+/*initial values*/
+       
+
+    //begin actions
+
+    this.index = function(){
+
+
+
+        var view = new this._View.View('/mview.nhtml');
+        view.getCnf().properties.content ='<h1>Hello there!</h1>';
+
+        view.parse();
+        dane = view.render();
+        this.res.end(dane);
+
+      
+
+    }
+
+
+
+    //end actions
+
+
+    //execute action
+    this[this.act]();
+
+}
+
+index.prototype=Controller.Controller.prototype;
+exports.index= index;
+
+```
+
+## Command line tool
+
+
+janf provides command line tool. Put the file janf, which is located in usr/bin, somewhere on your PATH. Moreover, move the folder janf, 
+and change the value of the variable JANFPATH in the mentioned file janf, to indicate the folder janf. Optionally you can take the file etc/bash_completion.d/janf and put it to your folder /etc/bash_completion.d/
+Now execute
+```bash
+mkdir MyProject
+cd MyProject
+janf make app
+```
+Then the project skeleton will be made. If you want to create new controller just put
+```bash
+janf make controller supage
+```
+You can check, that the file subpage.js appeared in folder application/controllers
+Back to root of your application. Write in the command line
+```bash
+janf add action subpage subindex
+```
+to add action subindex to subpage controller.
+At any moment you can ask for some help
+```bash
+janf help
+```
+Moreover you can obtain the list of all controllers of the application by putting
+```bash
+janf show controllers
+```
+If you are interested in the particular controller, say subpage, the console will show you the answer
+```bash
+janf show actions subpage
+```
