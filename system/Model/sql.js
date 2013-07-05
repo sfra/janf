@@ -10,18 +10,27 @@ sql = function(){
 
     Model.Model.apply(this, arguments);
 
+    var basicTable;
 
-    this.queryScheme={select:"*", from:"", where:"TRUE"};
-
+    this.queryScheme={select:"*", from:"", where:"TRUE", join:""};
+    
+    
     this.select=function(names){
         if( names===undefined ){
             names="*";
+        }
+        
+        if (this.queryScheme.select!="*") {
+            this.queryScheme.select+=", "+names;
+            return this;
         }
         this.queryScheme.select=names;
         return this;
     };
     
     this.from=function(source){
+        basicTable=source.split(",")[0].replace(/^\s+|\s+$/g, "");
+        
         this.queryScheme.from=source;
         return this;
     };
@@ -35,7 +44,7 @@ sql = function(){
         var qmPosition;
         var index=0;
         var re;
-  
+        console.log(text,replacement);
         while( (qmPosition=text.search("\\?"))>-1 ){
   
             re=new RegExp("^"+replacement[index][1]+"$");
@@ -52,8 +61,19 @@ sql = function(){
         this.queryScheme.where=text;
         return this;
     };
+    
+    this.join=function(joinedTable, existingColumn, joinedColumn){
+        console.log("W środku");
+
+        this.queryScheme.join="JOIN "+joinedTable+" ON "+existingColumn+"="+joinedTable+"."+joinedColumn;
+        console.log(this.queryScheme.join);
+        return this;
+    
+    }
+    
     this.exec=function(){
-        var query="SELECT "+this.queryScheme.select+" "+"FROM "+this.queryScheme.from+" "+"WHERE "+this.queryScheme.where+";";
+               
+        var query="SELECT "+this.queryScheme.select+" "+"FROM "+this.queryScheme.from+" "+this.queryScheme.join+" WHERE "+this.queryScheme.where+";";
         console.log(query);
         return this.query(query);
     }
