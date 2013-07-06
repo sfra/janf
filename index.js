@@ -31,7 +31,10 @@ var server = http.createServer(function(req, res){
 
     if( req.url === "/" || req.url === "/index.html" ){
 
-        currentControllerFile = require(__dirname + "/application/controllers/index.js");
+//        currentControllerFile = require(__dirname + "/application/controllers/index.js");
+	        currentControllerFile = require(__dirname + "/application/controllers/"+
+						INIT_CONFIG.config.DEFAULT_CONTROLLER+
+						".js");
         currentController = new currentControllerFile[INIT_CONFIG.config.DEFAULT_CONTROLLER](req, res, INIT_CONFIG.config.DEFAULT_CONTROLLER, INIT_CONFIG.config.DEFAULT_ACTION, GET, dane);
 
     } else if( fileexten[0] && req.url.search("__system__")<0 ){

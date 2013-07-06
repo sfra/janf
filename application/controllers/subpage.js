@@ -182,8 +182,16 @@ var subpage = function(){
         if( this._GET['ID'] == undefined ){
             this._GET['ID'] = 100;
         }
-        var proc = db.query('SELECT * FROM clients WHERE `id`<' + this._GET["ID"]);
 
+        //var proc = db.query('SELECT * FROM clients JOIN shops ON clients.id=shops.id_client'+
+        //                    ' WHERE `clients`.`id`<' + this._GET["ID"]+
+        //                    ' AND shops.trade>100000');
+
+   
+        
+        db.select("*").from("clients").join("shops","clients.id","id_client").where("clients.id < ? AND shops.trade > ?",[[this._GET["ID"]+"","[0-9]+"],["100000","[0-9]+"]]);
+        var proc=db.exec();
+        
         var contentForSocket = "";
 
         
