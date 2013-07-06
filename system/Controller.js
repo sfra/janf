@@ -91,7 +91,7 @@ Controller.prototype.setCache = function(data){
  * returns {String}
  */
 Controller.prototype.getCache = function(period){
-    console.log("CACHE", this.req.url);
+  
     var hash = this.crypto.createHash("sha1").update(this.req.url);
 
     var out = false;

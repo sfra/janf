@@ -8,7 +8,7 @@ var htmlhelper = require(ROOT_PATH + '/system/htmlhelper');
 var COMMON_PROPERTIES = require(ROOT_PATH + '/application/views/common/properties').properties;
 /**
  * @class View
- * @constructor
+ * @structor
  * @param {String} view file name
  * @param {String} config file name
  * @param {Array} additional configuration properties
@@ -20,7 +20,7 @@ View = function(vw, conf, repl){
 
 
     var cnf = { 'properties': COMMON_PROPERTIES };
-    //console.log(COMMON_PROPERTIES);
+
     try{
         fs.lstatSync(vw);
     } catch( e ){
@@ -38,13 +38,10 @@ View = function(vw, conf, repl){
 
     }
 
-//    var cnf = new Config(conf);
-
 
     cnf.properties.simpleExtend((new Config(conf)).properties);
     this.ext(cnf.properties, repl);
     var that = this;
-    // console.log(cnf.properties);
     data = libFile.toString(vw);
 
     /**
@@ -196,7 +193,6 @@ View.prototype.replaceHTMLhelper = function(data){
 
 
 View.prototype.removeUnusedMarkers = function(text){
-   // console.log(text.replace(/\[\[[^\[]*\]\]/g, '<!-- removed -->'));
     return text.replace(/\[\[[^\[]*\]\]/g, '<!-- removed -->').replace(/\$\{[^\$]*\}\$/g, '<!-- removed -->');
 }
 

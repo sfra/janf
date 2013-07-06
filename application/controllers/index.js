@@ -18,11 +18,9 @@ var index = function(){
 
     this.index = function(){
 
-        //   var view = new this._View.View('/mview.nhtml', null, { "color": "#330033" });
         var view = new this._View.View('/mview.nhtml', '/main.conf', { "color": "#330033" });
-        //view.getCnf().properties.baseurl = "http://localhost:1337";
         view.getCnf().properties.css = "main.css";
-        //console.log(view.getCnf().properties);
+
 
         view.getCnf().properties.content =
                 "janf is a simple <a class='inside' href='http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller' >MVC</a> framework written in <a class='inside' href='http://nodejs.org/'>node.js</a><br />\n\

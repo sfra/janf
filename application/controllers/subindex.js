@@ -33,7 +33,6 @@ var subindex = function(){
     this.iindex = function(){
 
         var view = new this._View.View('/view.nhtml', '/config.conf', { "color": "magenta" });
-        //  console.log(view.getCnf().properties.list);
         view.getCnf().properties.war = "x=" + this._GET["x"];
         view.getCnf().properties.valueFromNodeJS = 112;
         view.getCnf().properties.title = "DEF";

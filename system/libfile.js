@@ -22,11 +22,14 @@ function toString(file) {
     while ( ( buffConf.bytesRead = fs.readSync(buffConf.fdr, buff, 0, buffConf.LENGTH, buffConf.pos))> 0 ){
         buffConf.buffString+=buff.toString("utf8");
         buffConf.pos += buffConf.bytesRead;
+
+        
     }
   
-    buffConf.buffString+=buff.toString("utf8");
+
+    
     fs.closeSync(buffConf.fdr)
-  
+
   return buffConf.buffString;
 }
 

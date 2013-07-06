@@ -39,7 +39,7 @@ Config = function(file){
     /* insert content of imported files*/
     var data = data.replace(/@IMPORT\(\'([A-Za-z\/\.]+)\'\)/g, function(match, gr1, index, original){
 
-        return trimString(libFile.toString(ROOT_PATH + "/application/views/config/" + gr1));
+        return trimString(libFile.toString(ROOT_PATH + "/application/views/config/" + gr1))+"\n";
         //return group1;
     });
 

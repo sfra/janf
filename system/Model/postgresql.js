@@ -19,8 +19,6 @@ var connectionString="pg://"+this.config.username+":"+this.config.password+"@"+t
 
     var connection;
     var that = this;
-    console.log(connectionString);
-    console.log(connection);
     this.query=function(text){
       try {
         

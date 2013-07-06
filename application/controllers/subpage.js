@@ -123,14 +123,13 @@ var subpage = function(){
         
         
        var that = this;
-        console.log("APP_URL",APP_URL);
        var db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
        
        console.log(db);
        db.select("name, city").from("clients").where("name = ? AND id > ?",[["John","[A-Za-z]+"],["9","[0-9]+"]]);
-              console.log(db.queryScheme);
+ 
            var proc=   db.exec();
-//        var proc = db.query('SELECT * FROM clients');
+
 
         db.emm.on('dberror',function(){
             view.getCnf().properties.content = "Something wrong with connection happened.<br /> The current connection"+

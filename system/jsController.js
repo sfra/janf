@@ -29,8 +29,6 @@ var jsController = function(){
 
 
     this.socketWorker = function(){
-        console.log("SOCKETWORKER");
-        console.log(APP_URL);
         var view = new this._View.View('/../../system/jsTemplates/socketview.njs', null, { "APP_URL": APP_URL, "id": this._GET["id"] });
         view.parse();
         dane = view.render();

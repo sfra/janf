@@ -11,7 +11,10 @@ sql = function(){
     Model.Model.apply(this, arguments);
 
     var basicTable;
-
+/**
+ * Parts of the prepared sql query
+ * @type {Object}
+ */
     this.queryScheme={select:"*", from:"", where:"TRUE", join:""};
     
     
@@ -44,12 +47,11 @@ sql = function(){
         var qmPosition;
         var index=0;
         var re;
-        console.log(text,replacement);
+
         while( (qmPosition=text.search("\\?"))>-1 ){
   
             re=new RegExp("^"+replacement[index][1]+"$");
             if( replacement[index][1]!==undefined && replacement[index][0].match(re)===null ){
-                console.log("argument does not match");
                 return this;
             }
 
@@ -61,12 +63,17 @@ sql = function(){
         this.queryScheme.where=text;
         return this;
     };
-    
+   
+    /**
+     * Summary
+     * @param {String} joinedTable the table which will be joined
+     * @param {String} existingColumn the column in the base table
+     * @param {String} joinedColumn the column in the joined table
+     * @returns {sql}  chained object
+     */
     this.join=function(joinedTable, existingColumn, joinedColumn){
-        console.log("W środku");
-
+       
         this.queryScheme.join="JOIN "+joinedTable+" ON "+existingColumn+"="+joinedTable+"."+joinedColumn;
-        console.log(this.queryScheme.join);
         return this;
     
     }
@@ -74,7 +81,6 @@ sql = function(){
     this.exec=function(){
                
         var query="SELECT "+this.queryScheme.select+" "+"FROM "+this.queryScheme.from+" "+this.queryScheme.join+" WHERE "+this.queryScheme.where+";";
-        console.log(query);
         return this.query(query);
     }
     
