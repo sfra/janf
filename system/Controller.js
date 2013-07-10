@@ -119,7 +119,11 @@ Controller.prototype.getCache = function(period){
 
 }
 
-
+/**
+ * gets the content of the page written in the file with chtml extension, located in application/contents folder
+ * @param {String} a name if the file. If is undefined then the name controllerName.actionName.chtml is used
+ * @returns {String} Content of the file
+ */
 Controller.prototype.getContent=function(file){
 	
 	if ( file==undefined ) {

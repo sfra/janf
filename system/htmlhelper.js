@@ -7,6 +7,8 @@ Htmlhelper = function(){
     if( !(this instanceof Htmlhelper) ){
         return new Htmlhelper(arguments);
     }
+    console.log("in htmlhelper class:");
+    console.log(arguments);
 
     this.fun = arguments[0][0];
     helper = require(ROOT_PATH + "/application/helpers/" + arguments[0][0]);

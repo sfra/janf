@@ -96,6 +96,7 @@ View = function(vw, conf, repl){
             }
 
         }
+console.log(data);
 
         data = this.replaceHTMLhelper(data);
         data = this.removeUnusedMarkers(data);
@@ -182,8 +183,24 @@ View.prototype.replaceConditionals = function(text, curr, pprop, index){
 View.prototype.replaceHTMLhelper = function(data){
 
     return  data.replace(/\$\{HTMLhelper\s([A-Za-z]*)\((.*)\)\}\$/g, function(match, hlp, arg, offset, s){
+        
+        var argArray="";
+        console.log(arg);
 
-        var argArray = arg.split(',');
+        try {
+            argArray=JSON.parse(arg);
+            argArray=[argArray];
+        } catch(e) {
+            console.log("=================");
+
+            console.log(e);
+
+            argArray = arg.split(',');
+        }
+        
+        console.log("--------------------");
+        console.log(argArray);
+    
         var hp = htmlhelper.Htmlhelper.apply(htmlhelper.Htmlhelper, [ hlp ].concat(argArray));
         return hp.getHelperValue();
 
