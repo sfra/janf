@@ -96,7 +96,7 @@ View = function(vw, conf, repl){
             }
 
         }
-console.log(data);
+//console.log(data);
 
         data = this.replaceHTMLhelper(data);
         data = this.removeUnusedMarkers(data);

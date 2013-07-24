@@ -65,9 +65,11 @@ var subpage = function(){
     this.database = function(){
         var that = this;
         libs.switchValues(view.getCnf().properties.list, 'li', 'Database', 'current', '1', '0');
-        var db = this._Model.ModelFactory({ host: APP_URL }, "postgresql");
-        
+        var db = this._Model.ModelFactory({ host: APP_URL, database: "franks" }, "postgresql");
+        console.log("===================DB==================");
 
+        console.log(db);
+        console.log("===================DB==================");
         var proc = db.query('SELECT * FROM clients');
 
         view.getCnf().properties.content = "";
