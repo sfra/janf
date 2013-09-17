@@ -7,10 +7,20 @@ var clone = require("../libfile").clone;
  */
 
 Model_General=function(name){
-    
+    /**
+     * name of the model
+     * @type {string}
+     */
     var _name=name;
-    
+    /**
+     * Contains pairs fieldName.itsType
+     * @type {Object}
+     */
     var tableFields={};
+    /**
+     * the name for the main key
+     * @type {string}
+     */
     var _id=null;
     
     /* contains a list of objects field.(its type)*/
@@ -71,12 +81,12 @@ Model_General=function(name){
         
         
     }
-   /**
-    * Returns row with a given _id
-    * @type {Object}
-    * @returns {Object}
-    */ 
-    
+
+    /**
+     * Returns row with a given _id
+     * @param	{string}	id	value of _id
+     * @returns	{Object}		row with the given _id
+     */
     this.find=function(id){
       for(var i = 0;i<table.length;i++){
 
@@ -153,7 +163,11 @@ Model_General=function(name){
     }
 
     
-    
+    /**
+     * Creates a new model with the same fields as current
+     * @param	{string}	name	name of the created model
+     * @returns	{Object}			generated model
+     */
     this.buildModel_General=function(name){
     var out=new Model_General(name);
     
@@ -168,20 +182,30 @@ Model_General=function(name){
     
 }
     
+
     
-    
+    /**
+     * Generates a model containing the filtered records according to a given filter
+     * @param	{string}	name name of the new model 
+     * @param	{Object}	filteringObject	filtering conditions
+     * @returns	{Object}	new model
+     */
     this.filterOnModel_General=function(name,filteringObject){
         var mgCopy=new this.buildModel_General(name);
         var localTable=this.filter(filteringObject);
         for (var i=0;i<localTable.length;i++) {
-            //mgCopy.push(clone( localTable[i] ));
             mgCopy.addRow(clone( localTable[i] ));
-            mgCopy.getTable();
         }
         return mgCopy;
     }
 
 
+/**
+ * Creates new template for a data.
+ * @param	{Array[string[2]]}	fields	array of arrays [[field0:type0],[field1:type1],...,[fieldn:typen]]
+ * @param	{string}	id		label for id
+ * @returns	{Object}			tableFields
+ */
   this.create=function(fields,id){
         for (var i=0;i<fields.length;i++) {
             tableFields[fields[i][0]]=fields[i][1];
@@ -192,21 +216,27 @@ Model_General=function(name){
         }
         return tableFields;
     }
+    
+
 
 }
 
 
-
+/**
+ * parses a string from filtering object, and returns array of tokens
+ * @param	{string}	fltr	condition to be parsed
+ * @returns	{Array}			array of tokens
+ */
 Model_General.prototype.parseFilter=function(fltr){
     var re=/^(\!)?([^A-Za-z0-9]*)([A-Za-z0-9]+)([^A-Za-z0-9])?([A-Za-z0-9]*)$/;
     var out=fltr.match(re);
-    //console.log("FO");
-    //console.log(out);
-   
     return out;
 }
 
-
+/**
+ * Object containing two filtering functions
+ * @type {Object}
+ */
 Model_General.prototype.filterOne={
     
     unary: function(cond,field){
