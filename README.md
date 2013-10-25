@@ -110,7 +110,7 @@ some content
 Inside the list local variables can occur. This types of variables has the different form, namelly {variable}
 If config contains the item
 ```
-list=[{"cont":"hello","col":"#333221"},{"cont":"world","col":"#21ffee"},{"and others":"hello","col":"#033321"}]
+unlist=[{"cont":"hello","col":"#333221"},{"cont":"world","col":"#21ffee"},{"and others":"hello","col":"#033321"}]
 ```
 then the template
 ```html
