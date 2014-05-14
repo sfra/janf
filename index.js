@@ -19,7 +19,8 @@ var GET = [ ];
 
 var server = http.createServer(function(req, res){
 
-
+    var currentController=null;
+    var currentControllerFile=null;
     var fileexten = function(){
         var lastDot = req.url.lastIndexOf('.');
         return [ lastDot > -1 ? true : false,
