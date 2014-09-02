@@ -5,11 +5,14 @@
         <title>${title}$ ${frameworkname}$</title>
         [[jquery
         <script type="text/javascipt" src="http://code.jquery.com/jquery-{jqueryver}${if !env equals devel {.min}}$.js"></script>
+        
+        ${if env equals devel {<script src="http://localhost:35729/livereload.js"></script>}}$
+        
         jquery]]
         <script>
             var valueFromNodeJS=${valueFromNodeJS}$;        
         </script>
-        <script src="http://localhost:35729/livereload.js"></script>
+
         </head>
     <body>
         <header>
