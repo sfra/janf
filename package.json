@@ -21,6 +21,9 @@
   "author": "Szymon Frankowski",
   "license": "GNU Lesser PGL",
   "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-open": "^0.2.3",
     "moment": "^2.7.0",
     "mysql": "^2.4.0",
     "pg": "^3.4.0",
