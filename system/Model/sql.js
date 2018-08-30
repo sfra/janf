@@ -71,17 +71,23 @@ sql = function(){
      * @param {String} joinedColumn the column in the joined table
      * @returns {sql}  chained object
      */
-    this.join=function(joinedTable, existingColumn, joinedColumn){
+    this.join=(joinedTable, existingColumn, joinedColumn)=>{
        
         this.queryScheme.join="JOIN "+joinedTable+" ON "+existingColumn+"="+joinedTable+"."+joinedColumn;
+        
         return this;
     
     }
     
-    this.exec=function(){
+    
+    
+    this.exec=()=>  {
         
         let query="SELECT "+this.queryScheme.select+" "+"FROM "+this.queryScheme.from+" "+this.queryScheme.join+" WHERE "+this.queryScheme.where+";";
-        console.log(query);
+        
+        //this.config.queryText = query.replace(/\'/,"'");  
+        this.config.queryText = query.replace(/\'/g,'"');  
+
         return this.query(query);
     }
     

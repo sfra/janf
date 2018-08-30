@@ -148,6 +148,7 @@ let subpage = function () {
 
 
         });
+
         db.emm.on('dberror', function () {
             view.getCnf().properties.content = `Something wrong with connection happened.<br /> The current connection
             is suported by mysql, so if you use for example
