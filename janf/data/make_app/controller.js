@@ -1,13 +1,13 @@
-var ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
-var Controller = require(ROOT_PATH + '/system/Controller');
-var libs=require(ROOT_PATH+"/system/libfile");
-var socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
+let ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
+let Controller = require(ROOT_PATH + '/system/Controller');
+let libs=require(ROOT_PATH+"/system/libfile");
+let socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
 /**
  * @class %CONTROLLER%
  * @constructor
  * @inherits Controller.Controller
  */
-var %CONTROLLER% = function(){
+let %CONTROLLER% = function(){
 
     Controller.Controller.apply(this, arguments);
 

@@ -47,6 +47,7 @@ View = function(vw, conf, repl){
      * @return {string}
      */
     this.parse = function(){
+    
         for( let prop in cnf.properties ){
             let curr = cnf.properties[prop];
 
@@ -207,7 +208,8 @@ View.prototype.replaceHTMLhelper = function(data){
 
 
 View.prototype.removeUnusedMarkers = function(text){
-    return text.replace(/\[\[[^\[]*\]\]/g, '<!-- removed -->').replace(/@\{[^\$]*\}@/g, '<!-- removed -->');
+    return text;
+    //return text.replace(/\[\[[^\[]*\]\]/g, '<!-- removed -->').replace(/@\{[^@]*\}@/g, '<!-- removed -->');
 }
 
 /**

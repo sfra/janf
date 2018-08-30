@@ -1,5 +1,5 @@
 
-var io = require('socket.io');
+let io = require('socket.io');
 /**
  * @class sigleton class storing singleton
  * @constructor
@@ -7,7 +7,7 @@ var io = require('socket.io');
  */
 
 Socketsingleton = function(){
-    var instance;
+    let instance;
 
 
     if( instance == undefined ){

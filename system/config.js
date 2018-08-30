@@ -1,6 +1,6 @@
-var ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
-var CONFIG = require(process.env.INIT_CONFIG).config;
-var http = require('http'), qs = require('querystring'),
+let ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
+let CONFIG = require(process.env.INIT_CONFIG).config;
+let http = require('http'), qs = require('querystring'),
         libFile = require(ROOT_PATH + '/system/libfile');
 
 
@@ -19,25 +19,25 @@ Config = function(file){
         return this;                               //code
     }
 
-    var confArray = new Array();
+    let confArray = new Array();
 
 
-    var data = libFile.toString(file);
+    let data = libFile.toString(file);
 
 
     /* remove comments*/
-    var data = data.replace(/(.*)\;.*\n/g, function(match, g1, offset, s){
+    data = data.replace(/(.*)\;.*\n/g, function(match, g1, offset, s){
 
-        var rest = "";
+        let rest = "";
         if( match.charAt(0) != ';' ){
-            var rest = "\n";
+            let rest = "\n";
         }
         return g1 + rest;
     }
     );
 
     /* insert content of imported files*/
-    var data = data.replace(/@IMPORT\(\'([A-Za-z\/\.]+)\'\)/g, function(match, gr1, index, original){
+    data = data.replace(/@IMPORT\(\'([A-Za-z\/\.]+)\'\)/g, function(match, gr1, index, original){
 
         return trimString(libFile.toString(ROOT_PATH + "/application/views/config/" + gr1))+"\n";
         //return group1;
@@ -50,10 +50,10 @@ Config = function(file){
 
     confArray = data.split("\n");
 
-    var confOneLinePerItem = new Array();
-    var itemUpToEq;
+    let confOneLinePerItem = new Array();
+    let itemUpToEq;
 
-    for( var k = 0, j = -1;k < confArray.length;k++ ){
+    for( let k = 0, j = -1;k < confArray.length;k++ ){
 
         itemUpToEq = confArray[k].match(/^([A-Z]|[a-z]|\-)+\=/);
 
@@ -69,14 +69,14 @@ Config = function(file){
 
 
 
-    for( var i = 0;i < confOneLinePerItem.length;i++ ){
+    for( let i = 0;i < confOneLinePerItem.length;i++ ){
 
 
 
-        var eqSign = confOneLinePerItem[i].indexOf("=");
-        var property = confOneLinePerItem[i].substr(0, eqSign);
-        var value = confOneLinePerItem[i].substr(eqSign + 1);
-        var valueString = String(value);
+        let eqSign = confOneLinePerItem[i].indexOf("=");
+        let property = confOneLinePerItem[i].substr(0, eqSign);
+        let value = confOneLinePerItem[i].substr(eqSign + 1);
+        let valueString = String(value);
 
         if( valueString.charAt(0) === "[" ){
             this.properties[property] = JSON.parse(value);

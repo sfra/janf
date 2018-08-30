@@ -8,7 +8,7 @@
         jquery]]
         <script>
         
-        var valueFromNodeJS=@{valueFromNodeJS}@;
+        let valueFromNodeJS=@{valueFromNodeJS}@;
         
         </script>
         </head>

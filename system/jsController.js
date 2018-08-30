@@ -1,13 +1,13 @@
-var Controller = require(require(process.env.INIT_CONFIG).config.ROOT_PATH + '/system/Controller');
+let Controller = require(require(process.env.INIT_CONFIG).config.ROOT_PATH + '/system/Controller');
 
 
-var APP_URL = require(process.env.INIT_CONFIG).config.APP_URL;
+let APP_URL = require(process.env.INIT_CONFIG).config.APP_URL;
 /**
  * @class jsCotroller
  * @constructor
  * @inherits Controller.Controller
  */
-var jsController = function(){
+let jsController = function(){
 
     Controller.Controller.apply(this, arguments);
 
@@ -17,7 +17,7 @@ var jsController = function(){
 
     this.index = function(){
 
-        /*        var view = new this._View.View('/sview.nhtml', '/config.conf', { "color": "#330033" });
+        /*        let view = new this._View.View('/sview.nhtml', '/config.conf', { "color": "#330033" });
          
          view.getCnf().properties.title = "main page";
          view.getCnf().properties.war = "<p>hello</p>";
@@ -29,7 +29,7 @@ var jsController = function(){
 
 
     this.socketWorker = function(){
-        var view = new this._View.View('/../../system/jsTemplates/socketview.njs', null, { "APP_URL": APP_URL, "id": this._GET["id"] });
+        let view = new this._View.View('/../../system/jsTemplates/socketview.njs', null, { "APP_URL": APP_URL, "id": this._GET["id"] });
         view.parse();
         dane = view.render();
 

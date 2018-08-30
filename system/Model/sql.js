@@ -1,5 +1,5 @@
-var ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
-var Model = require(ROOT_PATH + '/system/Model/Model');
+let ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
+let Model = require(ROOT_PATH + '/system/Model/Model');
 
 /**
  * @class sql
@@ -10,7 +10,7 @@ sql = function(){
 
     Model.Model.apply(this, arguments);
 
-    var basicTable;
+    let basicTable;
 /**
  * Parts of the prepared sql query
  * @type {Object}
@@ -44,9 +44,9 @@ sql = function(){
  * @returns {sql}
  */
     this.where=function(text,replacement){
-        var qmPosition;
-        var index=0;
-        var re;
+        let qmPosition;
+        let index=0;
+        let re;
 
         while( (qmPosition=text.search("\\?"))>-1 ){
   
@@ -79,8 +79,9 @@ sql = function(){
     }
     
     this.exec=function(){
-               
-        var query="SELECT "+this.queryScheme.select+" "+"FROM "+this.queryScheme.from+" "+this.queryScheme.join+" WHERE "+this.queryScheme.where+";";
+        
+        let query="SELECT "+this.queryScheme.select+" "+"FROM "+this.queryScheme.from+" "+this.queryScheme.join+" WHERE "+this.queryScheme.where+";";
+        console.log(query);
         return this.query(query);
     }
     

@@ -3,7 +3,7 @@ immediately into template form, without any processing inside the controller.<br
 Instead of coding
 
 <pre>
-  for (var i=0, max=db.row.length; i&lt;max; i++ ) {
+  for (let i=0, max=db.row.length; i&lt;max; i++ ) {
                     view.getCnf().properties.content+=db.row[i]['name']+"|"+db.row[i]['city']+ "&lt;br /&gt;";
                   };
 </pre>

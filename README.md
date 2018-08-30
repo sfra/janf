@@ -10,8 +10,8 @@ However it implements loading the data in the background, when the page is rende
 If you want to use mysql connection, you must provide some configuration. Namelly, edit application/config/init.config.js file, and replace the content
 
 ```javascript
-var privateData = require(config.ROOT_PATH + '/../privateData').privateData;
-var DBConfig = {
+let privateData = require(config.ROOT_PATH + '/../privateData').privateData;
+let DBConfig = {
     //   adapter:'mysql',
     host: config.APP_URL,
     username: privateData.username, /* Put here */
@@ -21,7 +21,7 @@ var DBConfig = {
 ```
 by your details, for example
 ```javascript
-var DBConfig = {
+let DBConfig = {
     //   adapter:'mysql',
     host: config.APP_URL,
     username: "login",
@@ -31,17 +31,17 @@ var DBConfig = {
 ```
 If you want to query your database from some controller first you create Model object
 ```javascript
-var db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
+let db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
 ```
 or
 
 ```javascript
-var db = this._Model.ModelFactory({ host: APP_URL }, "postgresql");
+let db = this._Model.ModelFactory({ host: APP_URL }, "postgresql");
 ```
 then you can make a query, simply
 
 ```javascript
-var proc = db.query('SELECT * FROM clients');
+let proc = db.query('SELECT * FROM clients');
 ```
 or
 
@@ -59,14 +59,14 @@ the regular expression /^[A-Za-z]$/. However, validation regular expression is o
 Then you can execute the prepared statement
 
 ```javascript
-var proc=db.exec();
+let proc=db.exec();
 ```
 and when the answer is back, to do something with the results
 
 ```javascript
       db.emm.on('dbOK',function(){
                 
-                  for (var i=0, max=db.row.length; i<max; i++ ) {
+                  for (let i=0, max=db.row.length; i<max; i++ ) {
                     view.getCnf().properties.content+=db.row[i]['name']+"|"+db.row[i]['city']+ "<br />";
                   };
                   
@@ -92,7 +92,7 @@ The first one is a file of template on which current view is based. The second i
 The last one parameter is a javascript object which extends and overrides properties defined in config file
 There is another way to define properties of view. Assume that view has been introduced:
 ```javascript
-var view = new this._View.View('/mview.nhtml', '/main.conf', { 'color': '#330033' });
+let view = new this._View.View('/mview.nhtml', '/main.conf', { 'color': '#330033' });
 ```
 Then the property title can be changed immediately in the following way
 ```javascript
@@ -136,16 +136,16 @@ view.getCnf().properties.content = this.getContent();
 Methods of the instation of Controller (actions) loads the view with the typical parameters. Url index/subpage executes the action subpage of the controller index. Additionally index/subpage/user/Jan/age/22 maps to the associtive array this._GET[user=>Jan,age=>22], reachable from the controller.
 The controller index with one void action index looks like
 ```javascript
-var ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
-var Controller = require(ROOT_PATH + '/system/Controller');
-var libs=require(ROOT_PATH+"/system/libfile");
-var socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
+let ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
+let Controller = require(ROOT_PATH + '/system/Controller');
+let libs=require(ROOT_PATH+"/system/libfile");
+let socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
 /**
 * @class index
 * @constructor
 * @inherits Controller.Controller
 */
-var index = function(){
+let index = function(){
 
     Controller.Controller.apply(this, arguments);
 
@@ -175,16 +175,16 @@ exports.index= index;
 ```
 Replace the only action
 ```javascript
-var ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
-var Controller = require(ROOT_PATH + '/system/Controller');
-var libs=require(ROOT_PATH+\"/system/libfile\");
-var socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
+let ROOT_PATH=require(process.env.INIT_CONFIG).config.ROOT_PATH;
+let Controller = require(ROOT_PATH + '/system/Controller');
+let libs=require(ROOT_PATH+\"/system/libfile\");
+let socketsingleton=new require(ROOT_PATH+"/system/socketsingleton").Socketsingleton();
 /**
 * @class index
 * @constructor
 * @inherits Controller.Controller
 */
-var index = function(){
+let index = function(){
 
     Controller.Controller.apply(this, arguments);
 
@@ -197,7 +197,7 @@ var index = function(){
 
 
 
-        var view = new this._View.View('/mview.nhtml');
+        let view = new this._View.View('/mview.nhtml');
         view.getCnf().properties.content ='<h1>Hello there!</h1>';
 
         view.parse();

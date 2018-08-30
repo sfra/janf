@@ -28,8 +28,8 @@ or
 
 If you want to use mysql database modify the file init.config.js, by replacing
 
-	var privateData=require('./privateData').privateData;
-	var DBConfig={
+	let privateData=require('./privateData').privateData;
+	let DBConfig={
  	//   adapter:'mysql',
    		host:       'localhost',
    		username:   privateData.username,   /* Put here */
@@ -39,7 +39,7 @@ If you want to use mysql database modify the file init.config.js, by replacing
 
 by the proper values, e.g.
 
-	var DBConfig={
+	let DBConfig={
 		//   adapter:'mysql',
 		host:       'localhost',
 		username:   'username',

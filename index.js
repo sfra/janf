@@ -1,3 +1,4 @@
+'use strict';
 process.env.INIT_CONFIG = __dirname + "/application/config/init.config.js";
 let INIT_CONFIG=require(__dirname + "/application/config/init.config");
 let indexConfig = require(__dirname+'/application/config/init.config').indexConfig;
@@ -42,8 +43,10 @@ let server = http.createServer(function(req, res){
 
 
         try{
-            res.writeHead(200, indexConfig.extToRequest[fileexten[1]]['Content-Type']);
-        } catch( e ){
+
+            
+            res.writeHead('200', indexConfig.extToRequest[fileexten[1]]['Content-Type']);
+         } catch( e ){
             if( e.message.match("Cannot read property \'.*\' of undefined") ){
                 currentControllerFile = require(__dirname + "/application/controllers/errorpage.js");
                 currentController = new currentControllerFile["errorpage"](req, res, "errorpage", "index", [ ], dane);

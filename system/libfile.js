@@ -34,8 +34,6 @@ function toString(file) {
 }
 
 var clone = function(org) {
-    
-
     if (org instanceof Array) {
 
         var copy = new Array();
@@ -55,6 +53,9 @@ var clone = function(org) {
         
         copy = org;
     }
+        console.log('[clone');
+    console.log(copy);
+        console.log('clone]');
 
     return copy;
 

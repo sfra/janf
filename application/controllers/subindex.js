@@ -1,12 +1,12 @@
-var CONFIG = require(process.env.INIT_CONFIG).config;
-var Controller = require(CONFIG.ROOT_PATH + '/system/Controller');
-var APP_URL = CONFIG.APP_URL;
+let CONFIG = require(process.env.INIT_CONFIG).config;
+let Controller = require(CONFIG.ROOT_PATH + '/system/Controller');
+let APP_URL = CONFIG.APP_URL;
 /**
  * @class subindex
  * @constructor
  * @inherits Controller.Controller
  */
-var subindex = function(){
+let subindex = function(){
 
     Controller.Controller.apply(this, arguments);
 
@@ -18,8 +18,8 @@ var subindex = function(){
 
     this.index = function(){
 
-        var view = new this._View.View('/sview.nhtml', '/config.conf', { "color": "#330033" });
-        var model = new this._Model.Model(1, 2);
+        let view = new this._View.View('/sview.nhtml', '/config.conf', { "color": "#330033" });
+        let model = new this._Model.Model(1, 2);
 
         view.getCnf().properties.title = "SI main page";
         view.getCnf().properties.war = "<p>SUBINDEX main page</p>";
@@ -32,7 +32,7 @@ var subindex = function(){
 
     this.iindex = function(){
 
-        var view = new this._View.View('/view.nhtml', '/config.conf', { "color": "magenta" });
+        let view = new this._View.View('/view.nhtml', '/config.conf', { "color": "magenta" });
         view.getCnf().properties.war = "x=" + this._GET["x"];
         view.getCnf().properties.valueFromNodeJS = 112;
         view.getCnf().properties.title = "DEF";
@@ -48,12 +48,12 @@ var subindex = function(){
 
     this.iiindex = function(){
 
-        var db = this._Model.ModelFactory({ }, "mysql");
-        var proc = db.query('SELECT * FROM clients WHERE 1');
+        let db = this._Model.ModelFactory({ }, "mysql");
+        let proc = db.query('SELECT * FROM clients WHERE 1');
 
         proc.on('result', function(row){
             dane += "<br />";
-            for( var field in row ){
+            for( let field in row ){
                 if( row.hasOwnProperty(field) ){
                     dane += row[field] + "|";
                 }
@@ -70,19 +70,19 @@ var subindex = function(){
 
     this.sock = function(){
 
-        var ModelSync = new this._ModelSync.ModelSync();
+        let ModelSync = new this._ModelSync.ModelSync();
         dane = "<html><head></head><body><h1>:++:Results:++:</h1><div id='cont'></div><h2>FOOTER</h2></body>";
 
         dane = ModelSync.prepare(dane, 'cont');
-        var db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
-        var proc = db.query('SELECT * FROM clients WHERE 1');
+        let db = this._Model.ModelFactory({ host: APP_URL }, "mysql");
+        let proc = db.query('SELECT * FROM clients WHERE 1');
 
 
-        var contentForSocket = "";
+        let contentForSocket = "";
 
         proc.on('result', function(row){
             dane += "<br />";
-            for( var field in row ){
+            for( let field in row ){
                 if( row.hasOwnProperty(field) ){
                     contentForSocket += row[field] + "|";
                 }

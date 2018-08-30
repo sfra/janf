@@ -1,6 +1,6 @@
-var ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
-var fs = require('fs'), libFile = require('./libfile');
-var helper;
+let ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
+let fs = require('fs'), libFile = require('./libfile');
+let helper;
 
 Htmlhelper = function(){
 
@@ -13,8 +13,8 @@ Htmlhelper = function(){
     this.fun = arguments[0][0];
     helper = require(ROOT_PATH + "/application/helpers/" + arguments[0][0]);
 
-    var argWithoutFirst = [ ];
-    var argNo = 0;
+    let argWithoutFirst = [ ];
+    let argNo = 0;
 
     while( true ){
         if( arguments[0][argNo + 1] == undefined ){

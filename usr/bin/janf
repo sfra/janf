@@ -2,23 +2,23 @@
 
 /* command line tool for creating applications and controllers, adding actions */
 
-var child_process = require('child_process');
-var JANFPATH=require(__dirname+'/../../../privateData').privateData.JANFPATH;   /* set your path to the folder janf */
-var fs = require('fs');                                                         /* containing  folder data */
-var CWD=process.cwd();
+let child_process = require('child_process');
+let JANFPATH=require(__dirname+'/../../../privateData').privateData.JANFPATH;   /* set your path to the folder janf */
+let fs = require('fs');                                                         /* containing  folder data */
+let CWD=process.cwd();
 
-var make={};
+let make={};
 make.app=make_app;
 make.controller=make_controller;
-var add={};
+let add={};
 add.action=add_action;
 
 
 
-var command=process.argv[2];
-var obj=process.argv[3];
-var name=process.argv[4];
-var name2=process.argv[5];
+let command=process.argv[2];
+let obj=process.argv[3];
+let name=process.argv[4];
+let name2=process.argv[5];
 
 if( command=="make" ){
     
@@ -44,7 +44,7 @@ if( command=="add" ){
 if ( command=="show") {
     if ( obj=="controllers" ) {
         fs.readdir(CWD+"/application/controllers", function(er,data){
-            for (var i=0,max=data.length;i<max;i++) {
+            for (let i=0,max=data.length;i<max;i++) {
                 console.log(data[i].replace(/.js$/,""));
             }
             });
@@ -70,7 +70,7 @@ if( command=="help" ){
 
 function make_app() {
  
-var tar = child_process.exec('tar -xzvf '+JANFPATH+'/data/make_app/skel.tar.gz', function (error, stdout, stderr) {
+let tar = child_process.exec('tar -xzvf '+JANFPATH+'/data/make_app/skel.tar.gz', function (error, stdout, stderr) {
    if (error) {
      console.log(error.stack);
      console.log('Error: '+error.code);
@@ -147,9 +147,9 @@ function add_action(controller,action) {
             }
          
          
-         var actions=extractActions(data);
+         let actions=extractActions(data);
             
-            for( var i=0, max=actions.length; i<max; i++ ){
+            for( let i=0, max=actions.length; i<max; i++ ){
                 if (actions[i]==action) {
                     console.log("Action "+action+" is already in controller "+controller+"!");
                     return 1;
@@ -157,7 +157,7 @@ function add_action(controller,action) {
             }
             
             
-            var replacement=data.replace(/\/\/end\sactions/,"this."+action+" = function(){\n};\n\n//end actions");
+            let replacement=data.replace(/\/\/end\sactions/,"this."+action+" = function(){\n};\n\n//end actions");
   
   
                    fs.writeFile(CWD+"/application/controllers/"+controller+".js", replacement, function (err) {
@@ -178,9 +178,9 @@ function findActions(controller,action) {
                 return console.log(err);
             }
          
-            var actions=extractActions(data);
+            let actions=extractActions(data);
            
-            for ( var i=0,max=actions.length;i<max;i++) {
+            for ( let i=0,max=actions.length;i<max;i++) {
                 console.log(controller+"/"+actions[i]);
             }
             
@@ -189,12 +189,12 @@ function findActions(controller,action) {
 }
 
 function extractActions(data) {
-          var start=data.search(/\/\/begin\sactions/)+16;
+          let start=data.search(/\/\/begin\sactions/)+16;
             
-            var end=data.search(/\/\/end\sactions/);
-            var piece=data.substring(start,end);
-            var actions=[];
-            var curr;
+            let end=data.search(/\/\/end\sactions/);
+            let piece=data.substring(start,end);
+            let actions=[];
+            let curr;
             
             while( true ) {
                 curr=findAction(piece);
@@ -216,10 +216,10 @@ function extractActions(data) {
  */
 
 function findAction(text) {
-    var out=[undefined,undefined];
-    var start=text.search(/this\.([A-Za-z][A-Za-z0-9]*)\s*=\s*function/);
-    var act=RegExp.$1;
-    var bd=findBody(text);
+    let out=[undefined,undefined];
+    let start=text.search(/this\.([A-Za-z][A-Za-z0-9]*)\s*=\s*function/);
+    let act=RegExp.$1;
+    let bd=findBody(text);
     if (!!bd) {
         out[0]=act;
         out[1]=text.slice(bd[1]+1);
@@ -237,11 +237,11 @@ function findAction(text) {
 
 
 function findBody(text) {
-    var beg=0;
-    var fin=text.length-1;
-    var polar=0;
-    var out=false;
-    for( var i=beg; i<fin; i++ ) {
+    let beg=0;
+    let fin=text.length-1;
+    let polar=0;
+    let out=false;
+    for( let i=beg; i<fin; i++ ) {
         if (text.charAt(i)=="{") {
             polar=-1;
             out=[];
@@ -255,7 +255,7 @@ function findBody(text) {
     }
     
   
-    for( var i=out[0]+1; i<fin; i++ ) {
+    for( let i=out[0]+1; i<fin; i++ ) {
         switch (text.charAt(i)) {
             case "{": polar-=1; break;
             case "}": polar+=1; break;

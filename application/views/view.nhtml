@@ -7,8 +7,8 @@
         <script type="text/javascipt" src="http://code.jquery.com/jquery-{version}@{if !env equals devel {.min}}@.js"></script>
         jquery]]
         <script>
-        var x=@{valueX}@;
-        var valueFromNodeJS=@{valueFromNodeJS}@;
+        let x=@{valueX}@;
+        let valueFromNodeJS=@{valueFromNodeJS}@;
         @{inlinescript}@
         </script>
         </head>

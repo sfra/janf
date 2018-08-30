@@ -3,8 +3,8 @@ function ulist(lst) {
     console.log("IN lst");
 
 
-    var out="<ul>\n";
-    //for( var i=0;i<lst.length;i++ ) {
+    let out="<ul>\n";
+    //for( let i=0;i<lst.length;i++ ) {
     //            out="<li>"+lst[i]+"</li>\n";
     //    }
 

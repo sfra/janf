@@ -1,4 +1,4 @@
-var clone = require("../libfile").clone;
+let clone = require("../libfile").clone;
 
 /**
  * class Model_General
@@ -11,20 +11,20 @@ Model_General=function(name){
      * name of the model
      * @type {string}
      */
-    var _name=name;
+    let _name=name;
     /**
      * Contains pairs fieldName.itsType
      * @type {Object}
      */
-    var tableFields={};
+    let tableFields={};
     /**
      * the name for the main key
      * @type {string}
      */
-    var _id=null;
+    let _id=null;
     
     /* contains a list of objects field.(its type)*/
-    var table=[];
+    let table=[];
     /**
      * Defines fields of the model and their types
      * method create
@@ -33,7 +33,7 @@ Model_General=function(name){
      * @returns	{Object}			tableFields
      */
     this.create=function(fields,id){
-        for (var i=0;i<fields.length;i++) {
+        for (let i=0;i<fields.length;i++) {
             tableFields[fields[i][0]]=fields[i][1];
             
             if (fields[i][0]==id) {
@@ -52,9 +52,9 @@ Model_General=function(name){
      */
     this.validate=function(row){
         
-        var out=true;
+        let out=true;
         
-        for (var i in row) {
+        for (let i in row) {
             out=out && (typeof row[i])==tableFields[i];
 
         }
@@ -64,7 +64,7 @@ Model_General=function(name){
 
     this.addRow=function(row,validate){
         
-        for (var field in row) {
+        for (let field in row) {
             
             if ( !tableFields.hasOwnProperty(field) ) {
                 throw "The field "+field+" does not exist in "+_name;
@@ -88,7 +88,7 @@ Model_General=function(name){
      * @returns	{Object}		row with the given _id
      */
     this.find=function(id){
-      for(var i = 0;i<table.length;i++){
+      for(let i = 0;i<table.length;i++){
 
         if (table[i][_id]==id) {
             return table[i];
@@ -108,16 +108,16 @@ Model_General=function(name){
                 
         
         
-        var out=[];        
-        var currentRow;
-        var filteringArray=[];
-        for (var i=0;i<table.length;i++) {           
+        let out=[];        
+        let currentRow;
+        let filteringArray=[];
+        for (let i=0;i<table.length;i++) {           
             
-            for (var fltr in filteringObject) {
+            for (let fltr in filteringObject) {
                 
                 
                 
-                for(var f in table[i]){
+                for(let f in table[i]){
                     filteringArray=this.parseFilter(filteringObject[fltr]);
                     
                     
@@ -169,10 +169,10 @@ Model_General=function(name){
      * @returns	{Object}			generated model
      */
     this.buildModel_General=function(name){
-    var out=new Model_General(name);
+    let out=new Model_General(name);
     
-    var fields=[];
-    for (var i in tableFields) {
+    let fields=[];
+    for (let i in tableFields) {
         fields.push([i,tableFields[i]]);
     
     }
@@ -191,9 +191,9 @@ Model_General=function(name){
      * @returns	{Object}	new model
      */
     this.filterOnModel_General=function(name,filteringObject){
-        var mgCopy=new this.buildModel_General(name);
-        var localTable=this.filter(filteringObject);
-        for (var i=0;i<localTable.length;i++) {
+        let mgCopy=new this.buildModel_General(name);
+        let localTable=this.filter(filteringObject);
+        for (let i=0;i<localTable.length;i++) {
             mgCopy.addRow(clone( localTable[i] ));
         }
         return mgCopy;
@@ -207,7 +207,7 @@ Model_General=function(name){
  * @returns	{Object}			tableFields
  */
   this.create=function(fields,id){
-        for (var i=0;i<fields.length;i++) {
+        for (let i=0;i<fields.length;i++) {
             tableFields[fields[i][0]]=fields[i][1];
             
             if (fields[i][0]==id) {
@@ -228,8 +228,8 @@ Model_General=function(name){
  * @returns	{Array}			array of tokens
  */
 Model_General.prototype.parseFilter=function(fltr){
-    var re=/^(\!)?([^A-Za-z0-9]*)([A-Za-z0-9]+)([^A-Za-z0-9])?([A-Za-z0-9]*)$/;
-    var out=fltr.match(re);
+    let re=/^(\!)?([^A-Za-z0-9]*)([A-Za-z0-9]+)([^A-Za-z0-9])?([A-Za-z0-9]*)$/;
+    let out=fltr.match(re);
     return out;
 }
 
@@ -240,7 +240,7 @@ Model_General.prototype.parseFilter=function(fltr){
 Model_General.prototype.filterOne={
     
     unary: function(cond,field){
-    var out;
+    let out;
     if (cond[1]=='undefined') {
         return field===cond[2];
     }
@@ -261,7 +261,7 @@ Model_General.prototype.filterOne={
     
 },
 binary:function(cond,field0,field1){
-    var out;
+    let out;
     
     switch (cond) {
         case "<":
@@ -296,7 +296,7 @@ binary:function(cond,field0,field1){
 
 
 
-var model=new Model_General("mmodel");
+let model=new Model_General("mmodel");
 
 model.create([['id','number'],['imie','string'],['nazwisko','string'],['wiek','number']],'id');
 model.addRow({'id':1,'imie':'Jan','nazwisko':'Kowalski','wiek':20});
@@ -319,7 +319,7 @@ console.log('Validation:');
 console.log("==============");
 //console.log(model.buildModel_General("kopia").getTableFields());
 
-var mg=model.filterOnModel_General("kopia",{"wiek":">22"});
+let mg=model.filterOnModel_General("kopia",{"wiek":">22"});
 console.log(mg);
 console.log(mg.getTable());
 

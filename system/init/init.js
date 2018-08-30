@@ -1,5 +1,5 @@
-var INIT_CONFIG = require(process.env.INIT_CONFIG);
-var ROOT_PATH = INIT_CONFIG.config.ROOT_PATH;
+let INIT_CONFIG = require(process.env.INIT_CONFIG);
+let ROOT_PATH = INIT_CONFIG.config.ROOT_PATH;
 
 
 if ( typeof(App) == undefined ) {
@@ -9,7 +9,7 @@ if ( typeof(App) == undefined ) {
 
 
 
-var clone = require(ROOT_PATH + "/system/libfile").clone;
+let clone = require(ROOT_PATH + "/system/libfile").clone;
 
 /**
  * 
@@ -17,12 +17,12 @@ var clone = require(ROOT_PATH + "/system/libfile").clone;
  */
 Object.prototype.simpleExtend = function(){
 
-    var args = Array.prototype.slice.call(arguments);
+    let args = Array.prototype.slice.call(arguments);
 
 
-    var max = args.length - 1;
+    let max = args.length - 1;
 
-    var getInst = function(o){
+    let getInst = function(o){
         return o;
     }
 
@@ -36,7 +36,7 @@ Object.prototype.simpleExtend = function(){
     }
 
 
-    for( var obj = 0;obj < max + 1;obj++ ){
+    for( let obj = 0;obj < max + 1;obj++ ){
 
         for( prop in args[obj] ){
 

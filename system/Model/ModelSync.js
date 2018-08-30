@@ -1,11 +1,11 @@
-var INIT_CONFIG = require(process.env.INIT_CONFIG);
-var ROOT_PATH = INIT_CONFIG.config.ROOT_PATH;
-var Model = require(ROOT_PATH + '/system/Model/Model');
-var Socketsingleton = require(ROOT_PATH + "/system/socketsingleton");
+let INIT_CONFIG = require(process.env.INIT_CONFIG);
+let ROOT_PATH = INIT_CONFIG.config.ROOT_PATH;
+let Model = require(ROOT_PATH + '/system/Model/Model');
+let Socketsingleton = require(ROOT_PATH + "/system/socketsingleton");
 
 ModelSync = function(){
 
-    var args = Array.prototype.slice.call(arguments);
+    let args = Array.prototype.slice.call(arguments);
     this.connectionId = (new Date()).getTime() + "_" + Math.floor((Math.random() * 999999) + 1);
     this.socketServer = Socketsingleton.Socketsingleton.getInstance();
 
@@ -17,10 +17,10 @@ ModelSync = function(){
 
     }
 
-    var that = this;
+    let that = this;
 
     this.init = function(){
-        var callbackSocket = function(soc){
+        let callbackSocket = function(soc){
             {
 
                 //  clients[soc.id]=soc;
@@ -51,9 +51,9 @@ ModelSync = function(){
 
     this.prepare = function(data, id){
         //that.init();
-        var insertion = "<script>" +
+        let insertion = "<script>" +
                 "function messageHandler(e){document.getElementById('" + id + "').innerHTML=e.data;}\n" +
-                "var worker=new Worker('/__system__/socketWorker.js/id/" + that.connectionId + "');worker.postMessage('" + that.connectionId + "');console.log(worker);\n" +
+                "let worker=new Worker('/__system__/socketWorker.js/id/" + that.connectionId + "');worker.postMessage('" + that.connectionId + "');console.log(worker);\n" +
                 "worker.addEventListener('message',messageHandler,true);</script>";
         //data=data.replace("<head>","<head>"+insertion+"\n");
         data = data.replace("</body>", "\n" + insertion + "</body>");

@@ -1,5 +1,5 @@
-var ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
-var sql = require(ROOT_PATH + '/system/Model/sql');
+let ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
+let sql = require(ROOT_PATH + '/system/Model/sql');
 
 /**
  * @class postgresql
@@ -12,13 +12,13 @@ postgresql = function(){
 
 
 
-    var pg = require('pg');
+    let pg = require('pg');
 
-var connectionString="pg://"+this.config.username+":"+this.config.password+"@"+this.config.host+":5432/"+this.config.database;
-//var connectionString="tcp://"+this.config.username+":"+this.config.password+"@"+this.config.host+"/"+this.config.database;
+let connectionString="pg://"+this.config.username+":"+this.config.password+"@"+this.config.host+":5432/"+this.config.database;
+//let connectionString="tcp://"+this.config.username+":"+this.config.password+"@"+this.config.host+"/"+this.config.database;
 
-    var connection;
-    var that = this;
+    let connection;
+    let that = this;
     this.query=function(text){
       try {
         

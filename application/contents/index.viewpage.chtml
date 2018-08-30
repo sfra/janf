@@ -8,11 +8,11 @@ The first one is a file of template on which current view is based. The second i
  (however it can equal null, when we do not want to use any ).<br /> The last one parameter is a javascript
 object which extends and overrides properties defined in config file<br />
 There is another way to define properties of view. Assume that view has been introduced:
-<pre>var view = new this._View.View('/mview.nhtml', '/main.conf', { 'color': '#330033' });</pre>
+<pre>let view = new this._View.View('/mview.nhtml', '/main.conf', { 'color': '#330033' });</pre>
 Then the property <i>title</i> can be changed immediately in the following way
 <pre>view.getCnf().properties.title = 'Contact us';</pre>
 Template contains variables of a few types:<br />
-Atomic variables are of the form @{variable}@ which are filled by the content defined in config file
+Atomic variables are of the form <pre id="variable"></pre> which are filled by the content defined in config file
 <pre>title=Main page</pre>
 Lists which occur in template in the form
 <pre>&#91;&#91;list 
@@ -26,7 +26,7 @@ then the template
 <pre>
 &lt;ul&gt;<br />&#91;&#91;unlist &lt;li style="color:{col}">{cont}&lt;/li&gt; unlist&#93;&#93;<br />&lt;/ul&gt;</pre>
 produces
-<pre>&lt;ul&gt;<br />&lt;li style=&#34;color:#333321&#34;&gt;hello&lt;li&gt;<br />&lt;li style=&#34;color:#21ffee&#34;>world&lt;/li&gt;<br />&lt;li style=&#34;color:#0333321&#34;>and others&lt;/li&gt;<br />&lt;/ul&gt;</pre>
+<pre>&lt;ul&gt;<br />&lt;li style=&#34;color:#333321&#34;&gt;hello&lt;li&gt;<br />&lt;li style=&#34;color:#21ffee&#34;>world&lt;/li&gt;$lt br /$gt &lt;li style=&#34;color:#0333321&#34;>and others&lt;/li&gt;<br />&lt;/ul&gt;</pre>
 
 If you want to put the content to a separate file, the folder application/contents/ is for this aim.
 When, for example you want to have predefined content<br /> for the action <i>main</i> of the controller
@@ -36,3 +36,6 @@ can be associated with the view <br /> in the following way:
 <pre>
 view.getCnf().properties.content = this.getContent();
 </pre>
+<script>
+    window.onload=()=>{document.getElementById('variable').innerHTML='@'+'{'+'variable'+'}'+'@';}
+</script>

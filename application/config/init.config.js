@@ -1,4 +1,4 @@
-var config = { ROOT_PATH: __dirname + "/../..",
+let config = { ROOT_PATH: __dirname + "/../..",
     VIEWS_PATH: __dirname + "/../../application/views",
     VIEWS_CONFIGS_PATH: __dirname + "/../../application/views/config",
     APP_URL: "127.0.0.1",
@@ -8,7 +8,7 @@ var config = { ROOT_PATH: __dirname + "/../..",
 };
 
 
-var indexConfig = {
+let indexConfig = {
     extToRequest: {
         'css':
                 { 'Content-Type': 'text/css', 'addurl': '/application', 'ifempty': '/* empty resource */' },
@@ -23,11 +23,11 @@ var indexConfig = {
 
 };
 
-var privateData = require(config.ROOT_PATH + '/../privateData').privateData;
-var DBConfig = {
+let privateData = require(config.ROOT_PATH + '/../privateData').privateData;
+let DBConfig = {
     //   adapter:'mysql',
     host: config.APP_URL,
-    username: 'szymonu', /* Put here */
+    username: 'szymon', /* Put here */
     password: 'dupaWoloffa', /* proper  */
     database: 'janf'    /*  data    */
 }

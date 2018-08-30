@@ -1,13 +1,13 @@
-var ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
-var Controller = require(ROOT_PATH + '/system/Controller');
-var libs = require(ROOT_PATH + "/system/libfile");
-var socketsingleton = new require(ROOT_PATH + "/system/socketsingleton").Socketsingleton();
+let ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
+let Controller = require(ROOT_PATH + '/system/Controller');
+let libs = require(ROOT_PATH + "/system/libfile");
+let socketsingleton = new require(ROOT_PATH + "/system/socketsingleton").Socketsingleton();
 /**
  * @class index
  * @constructor
  * @inherits Controller.Controller
  */
-var index = function(){
+let index = function(){
 
     Controller.Controller.apply(this, arguments);
 
@@ -18,7 +18,7 @@ var index = function(){
 
     this.index = function(){
 
-        var view = new this._View.View('/mview.nhtml', '/main.conf', { "color": "#330033" });
+        let view = new this._View.View('/mview.nhtml', '/main.conf', { "color": "#330033" });
         view.getCnf().properties.css = "main.css";
 
 
@@ -40,7 +40,7 @@ For more information please consult readme.txt";
     this.modelpage = function(){
 
 
-        var view = new this._View.View('/mview.nhtml', '/main.conf', { "color": "#330033" });
+        let view = new this._View.View('/mview.nhtml', '/main.conf', { "color": "#330033" });
         view.getCnf().properties.css = "main.css";
 
         libs.switchValues(view.getCnf().properties.list, 'li', 'Model', 'current', '1', '0');
@@ -57,13 +57,13 @@ For more information please consult readme.txt";
 
     this.viewpage = function(){
 
-        var dane = this.getCache(30000);
+        let dane = this.getCache(30000);
 
         if( dane ){
             this.res.end(dane);
         } else{
 
-            var view = new this._View.View('/mview.nhtml', '/main.conf', { "color": "#330033" });
+            let view = new this._View.View('/mview.nhtml', '/main.conf', { "color": "#330033" });
             view.getCnf().properties.css = "main.css";
 
             libs.switchValues(view.getCnf().properties.list, 'li', 'View', 'current', '1', '0');
@@ -83,7 +83,7 @@ For more information please consult readme.txt";
     this.controllerpage = function(){
 
 
-        var view = new this._View.View('/mview.nhtml', '/main.conf', { "color": "#330033" });
+        let view = new this._View.View('/mview.nhtml', '/main.conf', { "color": "#330033" });
         view.getCnf().properties.css = "main.css";
 
         libs.switchValues(view.getCnf().properties.list, 'li', 'Controller', 'current', '1', '0');
@@ -106,7 +106,7 @@ For more information please consult readme.txt";
 
 
     this.commandline = function(){
-        var view= new this._View.View('/mview.nhtml','/main.conf');
+        let view= new this._View.View('/mview.nhtml','/main.conf');
         libs.switchValues(view.getCnf().properties.list,'li', 'Command line', 'current', '1','0');
         view.getCnf().properties.content = this.getContent();
         view.parse();
