@@ -1,11 +1,11 @@
-var CONFIG = require(process.env.INIT_CONFIG).config;
-var ROOT_PATH = CONFIG.ROOT_PATH;
-var VIEWS_PATH = CONFIG.VIEWS_PATH;
-var VIEWS_CONFIGS_PATH = CONFIG.VIEWS_CONFIGS_PATH;
-var fs = require('fs'), config = require(ROOT_PATH + '/system/config');
-var libFile = require(ROOT_PATH + '/system/libfile');
-var htmlhelper = require(ROOT_PATH + '/system/htmlhelper');
-var COMMON_PROPERTIES = require(ROOT_PATH + '/application/views/common/properties').properties;
+let CONFIG = require(process.env.INIT_CONFIG).config;
+let ROOT_PATH = CONFIG.ROOT_PATH;
+let VIEWS_PATH = CONFIG.VIEWS_PATH;
+let VIEWS_CONFIGS_PATH = CONFIG.VIEWS_CONFIGS_PATH;
+let fs = require('fs'), config = require(ROOT_PATH + '/system/config');
+let libFile = require(ROOT_PATH + '/system/libfile');
+let htmlhelper = require(`${ROOT_PATH}/system/htmlhelper`);
+let COMMON_PROPERTIES = require(`${ROOT_PATH}/application/views/common/properties`).properties;
 /**
  * @class View
  * @structor
@@ -15,11 +15,8 @@ var COMMON_PROPERTIES = require(ROOT_PATH + '/application/views/common/propertie
  */
 View = function(vw, conf, repl){
 
-
-    var data;
-
-
-    var cnf = { 'properties': COMMON_PROPERTIES };
+    let data;
+    let cnf = { 'properties': COMMON_PROPERTIES };
 
     try{
         fs.lstatSync(vw);
@@ -41,7 +38,7 @@ View = function(vw, conf, repl){
 
     cnf.properties.simpleExtend((new Config(conf)).properties);
     this.ext(cnf.properties, repl);
-    var that = this;
+    let that = this;
     data = libFile.toString(vw);
 
     /**
@@ -50,30 +47,30 @@ View = function(vw, conf, repl){
      * @return {string}
      */
     this.parse = function(){
-        for( var prop in cnf.properties ){
-            var curr = cnf.properties[prop];
+        for( let prop in cnf.properties ){
+            let curr = cnf.properties[prop];
 
             if( typeof curr === 'object' ){
 
                 while( true ){
 
-                    var beg = data.indexOf("[[" + prop);
+                    let beg = data.indexOf("[[" + prop);
                     if( beg == -1 )
                         break;
 
-                    var ed = data.indexOf(prop + "]]");
+                    let ed = data.indexOf(prop + "]]");
 
-                    var piece = data.substring(beg + 2 + prop.length, ed); //piece for replacement
-                    var pieceOut = "";
-                    var index = 0; // start of the iteration on current object
+                    let piece = data.substring(beg + 2 + prop.length, ed); //piece for replacement
+                    let pieceOut = "";
+                    let index = 0; // start of the iteration on current object
 
-                    for( var pprop in curr ){
+                    for( let pprop in curr ){
                         if( index === curr.length )
                             break; // stop replacement if the end of the object is reached
-                        pieceOut += "\n" + piece;
+                        pieceOut += `\n${piece}`;
 
-                        for( var subprop in curr[pprop] ){
-                            pieceOut = pieceOut.replace("{" + subprop + "}", curr[pprop][subprop]);
+                        for( let subprop in curr[pprop] ){
+                            pieceOut = pieceOut.replace(`{${subprop}}`, curr[pprop][subprop]);
                         }
 
                         index += 1;
@@ -124,7 +121,7 @@ View = function(vw, conf, repl){
  */
 
 View.prototype.execute = function(){
-    var negationMode = function(left){
+    let negationMode = function(left){
 
         if( left.charAt(0) === '!' ){
             return function(boolVal){
@@ -169,7 +166,7 @@ View.prototype.replaceConditionals = function(text, curr, pprop, index){
     that = this;
     return text.replace(/\$\{\s*if\s(\!?[A-Za-z0-9]*)\s(\S*)\s([A-Za-z0-9#]*)\s?\{(.*)\}\s*\}\$/g,
             function(match, left, rel, right, body, offset, s){
-                var value;
+                let value;
 
                 if( curr[pprop][left.replace('!', "")] ){
                     value = curr[pprop][left.replace('!', "")];
@@ -184,7 +181,7 @@ View.prototype.replaceHTMLhelper = function(data){
 
     return  data.replace(/\$\{HTMLhelper\s([A-Za-z]*)\((.*)\)\}\$/g, function(match, hlp, arg, offset, s){
         
-        var argArray="";
+        let argArray="";
         console.log(arg);
 
         try {
@@ -201,7 +198,7 @@ View.prototype.replaceHTMLhelper = function(data){
         console.log("--------------------");
         console.log(argArray);
     
-        var hp = htmlhelper.Htmlhelper.apply(htmlhelper.Htmlhelper, [ hlp ].concat(argArray));
+        let hp = htmlhelper.Htmlhelper.apply(htmlhelper.Htmlhelper, [ hlp ].concat(argArray));
         return hp.getHelperValue();
 
     });
@@ -220,7 +217,7 @@ View.prototype.removeUnusedMarkers = function(text){
  * @param {object} repl description
  */
 View.prototype.ext = function(cnfProp, repl){
-    var prop;
+    let prop;
     for( prop in repl ){
         cnfProp[prop] = repl[prop];
     }
@@ -228,7 +225,7 @@ View.prototype.ext = function(cnfProp, repl){
 };
 
 View.prototype.parseArguments = function(argStr){
-    var out = (typeof argStr == "object" && JSON.parse(arg)) || (argStr instanceof Array) || argStr;
+    let out = (typeof argStr == "object" && JSON.parse(arg)) || (argStr instanceof Array) || argStr;
 
     return out;
 
