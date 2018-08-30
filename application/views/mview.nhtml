@@ -1,22 +1,22 @@
 <html>
     <head>
         <meta charset="utf8" />
-        <link rel="stylesheet" type="text/css" href="${baseurl}$/resources/css/${css}$" />
-        <title>${title}$ ${frameworkname}$</title>
+        <link rel="stylesheet" type="text/css" href="@{baseurl}@/resources/css/@{css}@" />
+        <title>@{title}@ @{frameworkname}@</title>
         [[jquery
-        <script type="text/javascipt" src="http://code.jquery.com/jquery-{jqueryver}${if !env equals devel {.min}}$.js"></script>
+        <script type="text/javascipt" src="http://code.jquery.com/jquery-{jqueryver}@{if !env equals devel {.min}}@.js"></script>
         
-        ${if env equals devel {<script src="http://localhost:35729/livereload.js"></script>}}$
+        @{if env equals devel {<script src="http://localhost:35729/livereload.js"></script>}}@
         
         jquery]]
         <script>
-            var valueFromNodeJS=${valueFromNodeJS}$;        
+            var valueFromNodeJS=@{valueFromNodeJS}@;        
         </script>
 
         </head>
     <body>
         <header>
-            <h1>Welcome to ${frameworkname}$<br /> <span>(Node MVC framework)</span></h1>
+            <h1>Welcome to @{frameworkname}@<br /> <span>(Node MVC framework)</span></h1>
             
         </header>
   
@@ -25,18 +25,18 @@
     
       <ul>
 [[list
-        <li ${if current equals 1 {class="current"}}$><a href="{href}">{li}</a></li>
+        <li @{if current equals 1 {class="current"}}@><a href="{href}">{li}</a></li>
 list]]
       </ul>
       
         </nav>
 <div id="info">
 </div> 
-<section id="content">${content}$ ${tablee}$</section>
+<section id="content">@{content}@ @{tablee}@</section>
   </div>
   
   [[plist
-        <li ${if current equals 1 {class="current"}}$><a href="{href}">{li}</a></li>
+        <li @{if current equals 1 {class="current"}}@><a href="{href}">{li}</a></li>
 plist]]
   
   <footer>Szymon Frankowski 2013</footer>

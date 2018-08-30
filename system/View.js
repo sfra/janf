@@ -86,8 +86,8 @@ View = function(vw, conf, repl){
                 }
             } else{
 
-                while( data.indexOf("${" + prop + "}$") > -1 ){
-                    data = data.replace("${" + prop + "}$", cnf.properties[prop]);
+                while( data.indexOf("@{" + prop + "}@") > -1 ){
+                    data = data.replace("@{" + prop + "}@", cnf.properties[prop]);
                 }
 
             }
@@ -164,7 +164,7 @@ View.prototype.execute = function(){
 /* checks if there exists any conditional and execute it */
 View.prototype.replaceConditionals = function(text, curr, pprop, index){
     that = this;
-    return text.replace(/\$\{\s*if\s(\!?[A-Za-z0-9]*)\s(\S*)\s([A-Za-z0-9#]*)\s?\{(.*)\}\s*\}\$/g,
+    return text.replace(/\@\{\s*if\s(\!?[A-Za-z0-9]*)\s(\S*)\s([A-Za-z0-9#]*)\s?\{(.*)\}\s*\}@/g,
             function(match, left, rel, right, body, offset, s){
                 let value;
 
@@ -179,7 +179,7 @@ View.prototype.replaceConditionals = function(text, curr, pprop, index){
 
 View.prototype.replaceHTMLhelper = function(data){
 
-    return  data.replace(/\$\{HTMLhelper\s([A-Za-z]*)\((.*)\)\}\$/g, function(match, hlp, arg, offset, s){
+    return  data.replace(/@\{HTMLhelper\s([A-Za-z]*)\((.*)\)\}@/g, function(match, hlp, arg, offset, s){
         
         let argArray="";
         console.log(arg);
@@ -207,7 +207,7 @@ View.prototype.replaceHTMLhelper = function(data){
 
 
 View.prototype.removeUnusedMarkers = function(text){
-    return text.replace(/\[\[[^\[]*\]\]/g, '<!-- removed -->').replace(/\$\{[^\$]*\}\$/g, '<!-- removed -->');
+    return text.replace(/\[\[[^\[]*\]\]/g, '<!-- removed -->').replace(/@\{[^\$]*\}@/g, '<!-- removed -->');
 }
 
 /**

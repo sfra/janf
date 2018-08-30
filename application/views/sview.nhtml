@@ -1,10 +1,10 @@
 <html>
     <head>
         <meta charset="utf8" />
-        <link rel="stylesheet" type="text/css" href="${baseurl}$/resources/css/${css}$" />
-        <title>${title}$</title>
+        <link rel="stylesheet" type="text/css" href="@{baseurl}@/resources/css/@{css}@" />
+        <title>@{title}@</title>
         [[jquery
-        <script type="text/javascipt" src="http://code.jquery.com/jquery-{version}${if !env equals devel {.min}}$.js"></script>
+        <script type="text/javascipt" src="http://code.jquery.com/jquery-{version}@{if !env equals devel {.min}}@.js"></script>
         jquery]]
      
         </head>
@@ -13,18 +13,18 @@
 
 <a href="/index"> home</a><br />
 <img src="/fruits/apple.jpg" />
-    <div style="color:${color}$; background-color: ${background-color}$">
-             ${war}$
+    <div style="color:@{color}@; background-color: @{background-color}@">
+             @{war}@
       </div>
-      ${valueX}$
+      @{valueX}@
       
-  ${HTMLhelper img(/fruits/apple.jpg)}$    
+  @{HTMLhelper img(/fruits/apple.jpg)}@    
 <br />      
     [[list
         abc<br />
       list]]
 
-${HTMLhelper ulist(["a","b","c"])}$
+@{HTMLhelper ulist(["a","b","c"])}@
       
 </body>
 </html>

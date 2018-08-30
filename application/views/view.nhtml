@@ -1,29 +1,29 @@
 <html>
     <head>
         <meta charset="utf8" />
-        <link rel="stylesheet" type="text/css" href="${baseurl}$/resources/css/${css}$" />
-        <title>${title}$</title>
+        <link rel="stylesheet" type="text/css" href="@{baseurl}@/resources/css/@{css}@" />
+        <title>@{title}@</title>
         [[jquery
-        <script type="text/javascipt" src="http://code.jquery.com/jquery-{version}${if !env equals devel {.min}}$.js"></script>
+        <script type="text/javascipt" src="http://code.jquery.com/jquery-{version}@{if !env equals devel {.min}}@.js"></script>
         jquery]]
         <script>
-        var x=${valueX}$;
-        var valueFromNodeJS=${valueFromNodeJS}$;
-        ${inlinescript}$
+        var x=@{valueX}@;
+        var valueFromNodeJS=@{valueFromNodeJS}@;
+        @{inlinescript}@
         </script>
         </head>
 <body>
-    <div class="war" style="color:${color}$; background-color: ${background-color}$">${war}$</div>
+    <div class="war" style="color:@{color}@; background-color: @{background-color}@">@{war}@</div>
     
         <ul>
-            <div style="border:1px black solid">${color}$</div>
+            <div style="border:1px black solid">@{color}@</div>
 
             [[list
-            <li style="color:{color}; background-color:${if index is odd {#cecece}}$">{content}<br />
-            <div style="border:1px black solid">${color}$</div>
-            ${if color equals #43ff55 {the current color value is close to green<br />}}$
-            ${if !color equals #ff0000 {the current color value is not red<br />}}$
-            ${if colorr equals undefined {colorr is undefined}}$
+            <li style="color:{color}; background-color:@{if index is odd {#cecece}}@">{content}<br />
+            <div style="border:1px black solid">@{color}@</div>
+            @{if color equals #43ff55 {the current color value is close to green<br />}}@
+            @{if !color equals #ff0000 {the current color value is not red<br />}}@
+            @{if colorr equals undefined {colorr is undefined}}@
 
             </li>
 list]]
@@ -33,12 +33,12 @@ list]]
         <ol> the second list
             [[list
             <div style="background-color: red">
-            <li style="color:{color};${if color equals #ff0000 {background-color:#0000ff;}}$  ">CONT<br />
+            <li style="color:{color};@{if color equals #ff0000 {background-color:#0000ff;}}@  ">CONT<br />
             list]]
         </ol>
         
         
-        ${HTMLhelper makedouble(div,4,5)}$
+        @{HTMLhelper makedouble(div,4,5)}@
 
 </body>
 </html>

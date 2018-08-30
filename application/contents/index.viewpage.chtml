@@ -12,7 +12,7 @@ There is another way to define properties of view. Assume that view has been int
 Then the property <i>title</i> can be changed immediately in the following way
 <pre>view.getCnf().properties.title = 'Contact us';</pre>
 Template contains variables of a few types:<br />
-Atomic variables are of the form ${variable}$ which are filled by the content defined in config file
+Atomic variables are of the form @{variable}@ which are filled by the content defined in config file
 <pre>title=Main page</pre>
 Lists which occur in template in the form
 <pre>&#91;&#91;list 
