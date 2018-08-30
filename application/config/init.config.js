@@ -1,4 +1,4 @@
-let config = { ROOT_PATH: __dirname + "/../..",
+let config = { ROOT_PATH: __dirname + "/../../",
     VIEWS_PATH: __dirname + "/../../application/views",
     VIEWS_CONFIGS_PATH: __dirname + "/../../application/views/config",
     APP_URL: "127.0.0.1",
@@ -7,6 +7,7 @@ let config = { ROOT_PATH: __dirname + "/../..",
     DEFAULT_ACTION : "index"
 };
 
+console.log(config.ROOT_PATH);
 
 let indexConfig = {
     extToRequest: {
@@ -23,7 +24,7 @@ let indexConfig = {
 
 };
 
-let privateData = require(config.ROOT_PATH + '/../privateData').privateData;
+let privateData = require(config.ROOT_PATH + 'privateData').privateData;
 let DBConfig = {
     //   adapter:'mysql',
     host: config.APP_URL,

@@ -11,9 +11,6 @@ let ROOT_PATH = INIT_CONFIG.config.ROOT_PATH;
 let Model = function(){
     let args = Array.prototype.slice.call(arguments);
     this.config = require(ROOT_PATH + '/system/libfile').clone(INIT_CONFIG.DBConfig);
-    console.log('[Model config');
-    console.log(INIT_CONFIG.DBConfig);
-    console.log('Model config]');
     
     this.config.simpleExtend(args[0]);
 

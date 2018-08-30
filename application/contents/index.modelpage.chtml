@@ -3,7 +3,7 @@
          For this aim it uses webworkers and socket. <br .>
         If you want to use mysql connection, you must provide some configuration. Namelly, edit
         application/config/init.config.js file, and replace the content
-        <pre>let privateData = require(config.ROOT_PATH + '/../privateData').privateData;
+        <pre>let privateData = require(config.ROOT_PATH + 'privateData').privateData;
 let DBConfig = {
     //   adapter:'mysql',
     host: config.APP_URL,

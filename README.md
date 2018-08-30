@@ -10,7 +10,7 @@ However it implements loading the data in the background, when the page is rende
 If you want to use mysql connection, you must provide some configuration. Namelly, edit application/config/init.config.js file, and replace the content
 
 ```javascript
-let privateData = require(config.ROOT_PATH + '/../privateData').privateData;
+let privateData = require(config.ROOT_PATH + 'privateData').privateData;
 let DBConfig = {
     //   adapter:'mysql',
     host: config.APP_URL,

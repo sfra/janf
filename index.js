@@ -4,6 +4,7 @@ let INIT_CONFIG=require(__dirname + "/application/config/init.config");
 let indexConfig = require(__dirname+'/application/config/init.config').indexConfig;
 require("./system/init/init");
 
+console.log(INIT_CONFIG);
 let http = require('http'),
 	fs = require('fs'),
 	config = require('./system/config'),

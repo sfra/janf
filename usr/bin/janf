@@ -1,4 +1,4 @@
-#!/heme/szymon/usr/local/bin/node
+# set your path to the interpreter on node for example /usr/local/bin/node
 
 /* command line tool for creating applications and controllers, adding actions */
 
