@@ -15,8 +15,8 @@ function toString(file) {
                 pos:0,
                 fdr:fs.openSync(file, 'r')
                 };
-
-    var buff = new Buffer(buffConf.LENGTH,'utf8');
+    console.log(buffConf.LENGTH);
+    var buff = new Buffer(buffConf.LENGTH);
 
 
     while ( ( buffConf.bytesRead = fs.readSync(buffConf.fdr, buff, 0, buffConf.LENGTH, buffConf.pos))> 0 ){

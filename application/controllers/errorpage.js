@@ -1,11 +1,13 @@
-var Controller = require(require(process.env.INIT_CONFIG).config.ROOT_PATH + '/system/Controller');
+/*global require, process*/
+'use strict';
+let Controller = require(require(process.env.INIT_CONFIG).config.ROOT_PATH + '/system/Controller');
 
 /**
  * @class subindex
  * @constructor
  * @inherits Controller.Controller
  */
-var errorpage = function(){
+let errorpage = function(){
 
     Controller.Controller.apply(this, arguments);
 
@@ -15,7 +17,7 @@ var errorpage = function(){
 
     this.index = function(){
 
-        var view = new this._View.View('/eview.nhtml', '/main.conf');
+        let view = new this._View.View('/eview.nhtml', '/main.conf');
 
 
         view.getCnf().properties.css = "main.css";

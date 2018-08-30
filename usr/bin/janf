@@ -1,4 +1,4 @@
-#!/usr/local/bin/node
+#!/heme/szymon/usr/local/bin/node
 
 /* command line tool for creating applications and controllers, adding actions */
 

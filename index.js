@@ -1,9 +1,9 @@
 process.env.INIT_CONFIG = __dirname + "/application/config/init.config.js";
-var INIT_CONFIG=require(__dirname + "/application/config/init.config");
-var indexConfig = require(__dirname+'/application/config/init.config').indexConfig;
+let INIT_CONFIG=require(__dirname + "/application/config/init.config");
+let indexConfig = require(__dirname+'/application/config/init.config').indexConfig;
 require("./system/init/init");
 
-var http = require('http'),
+let http = require('http'),
 	fs = require('fs'),
 	config = require('./system/config'),
 	View = require('./system/View'),
@@ -11,18 +11,18 @@ var http = require('http'),
 	Controller = require('./system/Controller');
 
 
-var dane;
-var matchedReGroups;
-var GET = [ ];
+let dane;
+let matchedReGroups;
+let GET = [ ];
 
 
 
-var server = http.createServer(function(req, res){
+let server = http.createServer(function(req, res){
 
-    var currentController=null;
-    var currentControllerFile=null;
-    var fileexten = function(){
-        var lastDot = req.url.lastIndexOf('.');
+    let currentController=null;
+    let currentControllerFile=null;
+    let fileexten = function(){
+        let lastDot = req.url.lastIndexOf('.');
         return [ lastDot > -1 ? true : false,
             req.url.substr(lastDot + 1)
         ];
@@ -63,11 +63,11 @@ var server = http.createServer(function(req, res){
 
 
     else{
-        var urlArray = req.url.split('/');
+        let urlArray = req.url.split('/');
 
         urlArray.shift();
-        var contr = urlArray.shift();
-        var act = urlArray.shift();
+        let contr = urlArray.shift();
+        let act = urlArray.shift();
 
 /*release*/
 

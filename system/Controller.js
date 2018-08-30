@@ -1,5 +1,6 @@
-var INIT_CONFIG = require(process.env.INIT_CONFIG);
-var http = require('http'),
+/*global require, process*/
+let INIT_CONFIG = require(process.env.INIT_CONFIG);
+let http = require('http'),
         fs = require('fs'),
         ROOT_PATH = INIT_CONFIG.config.ROOT_PATH,
         config = ROOT_PATH + '/system/config',
@@ -12,7 +13,7 @@ var http = require('http'),
 
 
 
-var currentController;
+let currentController;
 
 
 
@@ -28,8 +29,8 @@ var currentController;
  * @param {String} mimetype
  */
 Controller = function(req, res, contr, act, GET, dane, mimetype){
-    var ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
-    var CONFIG = require(process.env.INIT_CONFIG).config;
+    let ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
+    let CONFIG = require(process.env.INIT_CONFIG).config;
     this._View = require(ROOT_PATH + '/system/View');
     this._Model = require(ROOT_PATH + '/system/Model/Model');
     this._ModelSync = require(ROOT_PATH + '/system/Model/ModelSync');
@@ -47,7 +48,7 @@ Controller = function(req, res, contr, act, GET, dane, mimetype){
 
 
     this._GET = { };
-    var i = 0;
+    let i = 0;
 
     while( true ){
 
@@ -73,7 +74,7 @@ Controller = function(req, res, contr, act, GET, dane, mimetype){
  */
 Controller.prototype.setCache = function(data){
 
-    var hash = this.crypto.createHash("sha1").update(this.req.url);
+    let hash = this.crypto.createHash("sha1").update(this.req.url);
 
     fs.writeFile(ROOT_PATH + "/application/cache/" + hash.digest('hex'), data, function(err){
         if( err ){
@@ -92,12 +93,12 @@ Controller.prototype.setCache = function(data){
  */
 Controller.prototype.getCache = function(period){
   
-    var hash = this.crypto.createHash("sha1").update(this.req.url);
+    let hash = this.crypto.createHash("sha1").update(this.req.url);
 
-    var out = false;
-    var filepath = ROOT_PATH + "/application/cache/" + hash.digest('hex');
-    var dateOfMod;
-    var dateNow = require('moment').utc().valueOf();
+    let out = false;
+    let filepath = ROOT_PATH + "/application/cache/" + hash.digest('hex');
+    let dateOfMod;
+    let dateNow = require('moment').utc().valueOf();
     
 	try{
        

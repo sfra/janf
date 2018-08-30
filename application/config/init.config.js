@@ -27,9 +27,9 @@ var privateData = require(config.ROOT_PATH + '/../privateData').privateData;
 var DBConfig = {
     //   adapter:'mysql',
     host: config.APP_URL,
-    username: privateData.username, /* Put here */
-    password: privateData.password, /* proper  */
-    database: privateData.database    /*  data    */
+    username: 'szymon', /* Put here */
+    password: 'dupaWoloffa', /* proper  */
+    database: 'janf'    /*  data    */
 }
 
 
