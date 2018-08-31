@@ -47,10 +47,12 @@ View = function(vw, conf, repl){
      * @return {string}
      */
     this.parse = function(){
-    
         for( let prop in cnf.properties ){
             let curr = cnf.properties[prop];
 
+        console.log('((((((((((((');
+        console.log(curr);
+        console.log('))))))))))))');
             if( typeof curr === 'object' ){
 
                 while( true ){
@@ -137,6 +139,7 @@ View.prototype.execute = function(){
     };
 
     return { is: function(left, rel, right, body, index, value){
+            console.log(arguments);
             if( left === "index" ){
                 if( right === "odd" && negationMode(left)(index % 2 == 1) ){
                     return body;
@@ -172,6 +175,11 @@ View.prototype.replaceConditionals = function(text, curr, pprop, index){
                 if( curr[pprop][left.replace('!', "")] ){
                     value = curr[pprop][left.replace('!', "")];
                 }
+                
+            console.log('[[[[[[[[[]]]]]]]]]');
+            console.log(curr);    
+            console.log(rel);
+                console.log(match,left, rel, right, body, index, value);
                 return that.execute[rel](left, rel, right, body, index, value);
             });
 

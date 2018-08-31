@@ -7,7 +7,7 @@ let config = { ROOT_PATH: __dirname + "/../../",
     DEFAULT_ACTION : "index"
 };
 
-console.log(config.ROOT_PATH);
+
 
 let indexConfig = {
     extToRequest: {

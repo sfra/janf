@@ -79,7 +79,12 @@ Config = function(file){
         let valueString = String(value);
 
         if( valueString.charAt(0) === "[" ){
-            this.properties[property] = JSON.parse(value);
+            try {
+                this.properties[property] = JSON.parse(value);
+
+            } catch(e){
+                console.log(e);
+            }
             continue;
         }
 

@@ -9,7 +9,9 @@
         @{if env equals devel {<script src="http://localhost:35729/livereload.js"></script>}}@
         
         jquery]]
+        <script type="application/javascript" src="@{baseurl}@/resources/javascript/@{js}@"
         <script>
+        
             let valueFromNodeJS=@{valueFromNodeJS}@;        
         </script>
 
