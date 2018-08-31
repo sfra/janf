@@ -35,8 +35,11 @@ list]]
 <div id="info">
 </div> 
 <section id="content">@{content}@ @{tablee}@</section>
-</div>
+  </div>
   
+  [[plist
+        <li @{if current equals 1 {class="current"}}@><a href="{href}">{li}</a></li>
+plist]]
   
   <footer>Szymon Frankowski 2013</footer>
 </body>

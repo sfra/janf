@@ -3,4 +3,5 @@
 {"li":"Database 2","href":"/subpage/databasesec", "current":"0"},
 {"li":"Database socket","href":"/subpage/databasesocket", "current":"0"},
 {"li":"Controller","href":"/subpage/controller","current":"0"},
+{"li":"Handling of uploads","href":"/subpage/uploads","current":"0"},
 {"li":"Back to the main page","href":"/index", "current":"0"}]

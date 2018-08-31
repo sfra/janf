@@ -50,9 +50,6 @@ View = function(vw, conf, repl){
         for( let prop in cnf.properties ){
             let curr = cnf.properties[prop];
 
-        console.log('((((((((((((');
-        console.log(curr);
-        console.log('))))))))))))');
             if( typeof curr === 'object' ){
 
                 while( true ){
@@ -176,10 +173,10 @@ View.prototype.replaceConditionals = function(text, curr, pprop, index){
                     value = curr[pprop][left.replace('!', "")];
                 }
                 
-            console.log('[[[[[[[[[]]]]]]]]]');
-            console.log(curr);    
-            console.log(rel);
-                console.log(match,left, rel, right, body, index, value);
+//            console.log('[[[[[[[[[]]]]]]]]]');
+//            console.log(curr);    
+//            console.log(rel);
+//                console.log(match,left, rel, right, body, index, value);
                 return that.execute[rel](left, rel, right, body, index, value);
             });
 

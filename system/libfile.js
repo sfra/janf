@@ -53,9 +53,6 @@ var clone = function(org) {
         
         copy = org;
     }
-        console.log('[clone');
-    console.log(copy);
-        console.log('clone]');
 
     return copy;
 

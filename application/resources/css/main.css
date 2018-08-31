@@ -121,7 +121,7 @@ a {
 }
 
 #info{
-    float: left; position: absolute; left :12px; top:300px; background-image: url('/but.jpg');
+    float: left; position: absolute; left :12px; top:350px; background-image: url('/but.jpg');
     width:200; height: 346px; padding: 15px; margin-top: 15px;
     color:#ffffff; font-size: 11px;
     -webkit-box-shadow: 2px 2px 3px #46677f;

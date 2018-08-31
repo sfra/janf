@@ -320,8 +320,8 @@ console.log("==============");
 //console.log(model.buildModel_General("kopia").getTableFields());
 
 let mg=model.filterOnModel_General("kopia",{"wiek":">22"});
-console.log(mg);
-console.log(mg.getTable());
+//console.log(mg);
+//console.log(mg.getTable());
 
 
 exports.Model_General=Model_General;

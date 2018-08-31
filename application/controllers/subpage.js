@@ -2,7 +2,10 @@ let CONFIG = require(process.env.INIT_CONFIG).config;
 let Controller = require(CONFIG.ROOT_PATH + '/system/Controller');
 let APP_URL = CONFIG.APP_URL;
 let ROOT_PATH = CONFIG.ROOT_PATH;
-let libs = require(ROOT_PATH + "/system/libfile");
+let libs = require(ROOT_PATH + '/system/libfile');
+let print = require('../../usr/bin/screen').print;
+let upload =require(`${ROOT_PATH}/system/helpers/upload`);
+
 /**
  * @class subpage
  * @constructor
@@ -71,7 +74,7 @@ let subpage = function () {
         }, "postgresql");
         console.log("===================DB==================");
 
-        console.log(db);
+       // console.log(db);
         console.log("===================DB==================");
         let proc = db.query('SELECT * FROM clients');
 
@@ -132,10 +135,10 @@ let subpage = function () {
             host: APP_URL
         }, "mysql");
 
-        db.select("name, city").from("clients").where("name = ? AND id > ?", [["John", "[A-Za-z]+"], ["2", "[0-9]+"]]);
 
+        db.select("name, city").from("clients").where("name = ? AND id > ?", [["John", "[A-Za-z]+"], ["2", "[0-9]+"]]);
         let proc = db.exec();
-        console.log(db);
+        //console.log(db);
 
         db.emm.on('dbOK', function () {
 
@@ -263,16 +266,44 @@ let subpage = function () {
         this.res.end(dane);
 
     }
+    this.uploads = function(){
+        let view = new this._View.View('/mview.nhtml','/uploads.conf');
+        view.getCnf().properties.content = `Janf handles uploading files also<br />
+        <form action="uploadHandler"/ enctype="multipart/form-data" method="post">
+            <input type="file" id="photo" name="photo" />
+            <input type="submit" value="save image" name="submit" />
+        </form>
+        `;
+        
+        
+        view.parse();
+        this.res.end(view.parse());
+    };
+    
+    
+    this.uploadHandler = function(){
+        let view = new this._View.View('/mview.nhtml', '/main.conf');
+        
+//        let that = this;
+        upload.image(this.req,this.res,`${ROOT_PATH}/application/uploads/`,(dest)=>{
+        view.getCnf().properties.content = `The file has been uploaded to ${dest}`;
+        view.parse();
+        dane = view.render();
+        this.res.end(dane);
+
+            
 
 
+        
+        });
+        
 
+                
+        
+        
+    }
 
-
-
-
-
-
-    //end actions
+//end actions
 
 
     //execute action

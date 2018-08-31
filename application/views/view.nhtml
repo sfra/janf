@@ -36,7 +36,7 @@ list]]
             <li style="color:{color};@{if color equals #ff0000 {background-color:#0000ff;}}@  ">CONT<br />
             list]]
         </ol>
-        
+
         
         @{HTMLhelper makedouble(div,4,5)}@
 

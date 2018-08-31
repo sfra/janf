@@ -35,14 +35,8 @@ let server = http.createServer(function (req, res) {
 
     }();
 
-    if (indexConfig.extToRequest[fileexten[1]] !== undefined) {
-
-        res.setHeader('Content-Type', indexConfig.extToRequest[fileexten[1]]['Content-Type']);
-        console.log('CONTENTTYPE');
-        indexConfig.extToRequest[fileexten[1]]['Content-Type'];
-    }
-
-
+    console.log('fileext:'+fileexten);
+    
 
     if (req.url === "/" || req.url === "/index.html") {
 
@@ -57,10 +51,6 @@ let server = http.createServer(function (req, res) {
 
         try {
             res.writeHead('200', indexConfig.extToRequest[fileexten[1]]['Content-Type']);
-            console.log('header');
-            console.log(indexConfig.extToRequest[fileexten[1]]['Content-Type']);
-
-            res.setHeader('Content-Type', indexConfig.extToRequest[fileexten[1]]['Content-Type']);
         } catch (e) {
             if (e.message.match("Cannot read property \'.*\' of undefined")) {
                 currentControllerFile = require(__dirname + "/application/controllers/errorpage.js");
@@ -85,10 +75,8 @@ let server = http.createServer(function (req, res) {
         let act = urlArray.shift();
 
         /*release*/
+
         try {
-
-
-
             if (contr == "__system__") {
                 //res.writeHead(200, "application/javascript");
 
@@ -101,10 +89,6 @@ let server = http.createServer(function (req, res) {
             } else {
                 currentControllerFile = require(__dirname + "/application/controllers/" + INIT_CONFIG.config.DEFAULT_CONTROLLER + ".js");
                 currentController = new currentControllerFile[INIT_CONFIG.config.DEFAULT_CONTROLLER](req, res, INIT_CONFIG.config.DEFAULT_CONTROLLER, INIT_CONFIG.config.DEFAULT_ACTION, urlArray, dane);
-
-
-
-
             }
         } catch (e) {
             currentControllerFile = require(__dirname + "/application/controllers/errorpage.js");

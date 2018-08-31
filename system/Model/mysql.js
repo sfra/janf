@@ -12,9 +12,9 @@ let mysql = function(){
 
     sql.sql.apply(this, arguments);
 
-    console.log('config');
-    console.log(this.config);
-    console.log('config');
+//    console.log('config');
+//    console.log(this.config);
+//    console.log('config');
     let mysql = require('mysql');
     let connection = mysql.createConnection({
         host: this.config.host,
