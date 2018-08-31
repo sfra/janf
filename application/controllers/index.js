@@ -9,10 +9,12 @@ let socketsingleton = new require(ROOT_PATH + "/system/socketsingleton").Sockets
  */
 let index = function(){
 
+    
     Controller.Controller.apply(this, arguments);
 
     /*initial values*/
 
+    
 
     //begin actions
 

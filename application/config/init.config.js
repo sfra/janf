@@ -18,7 +18,9 @@ let indexConfig = {
         'jpg':
                 { 'Content-Type': 'image/jpeg', 'addurl': '/application/resources/images', 'ifempty': '/* empty resource */' },
         'gif':
-                { 'Content-Type': 'image/gif', 'addurl': '/application/resources/images', 'ifempty': '/* empty resource */' }
+                { 'Content-Type': 'image/gif', 'addurl': '/application/resources/images', 'ifempty': '/* empty resource */' },
+        'js':
+            { 'Content-Type': 'application/javascript', 'addurl': '/application/resources/js', 'ifempty': '/* empty resource */' }
 
     }
 

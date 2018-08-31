@@ -4,6 +4,19 @@ janf is a simple MVC framework written in node.js. Just run in the main director
 node index.js
 ```
 
+Alternativelly you can install [nodemon](https://github.com/remy/nodemon/):
+
+```
+npm install -g nodemon
+```
+
+and then 
+
+```
+node run.js dev
+```
+to obtain server and browser reload after the project is changed.
+
 ##Model
 Model is in a very basic form. It supports MySql and Postgresql databases so far.
 However it implements loading the data in the background, when the page is rendering. For this aim it uses webworkers and socket. 

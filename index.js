@@ -38,6 +38,8 @@ let server = http.createServer(function (req, res) {
     if (indexConfig.extToRequest[fileexten[1]] !== undefined) {
 
         res.setHeader('Content-Type', indexConfig.extToRequest[fileexten[1]]['Content-Type']);
+        console.log('CONTENTTYPE');
+        indexConfig.extToRequest[fileexten[1]]['Content-Type'];
     }
 
 
