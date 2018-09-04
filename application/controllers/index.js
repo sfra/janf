@@ -29,8 +29,8 @@ let index = function(){
 For more information please consult readme.txt";
 
         view.parse();
-        dane = view.render();
-        this.res.end(dane);
+        
+        this.res.end(view.render());
 
     }
 
@@ -50,8 +50,7 @@ For more information please consult readme.txt";
         view.getCnf().properties.content = this.getContent();
 
         view.parse();
-        dane = view.render();
-        this.res.end(dane);
+        this.res.end(view.render());
 
     }
 
@@ -123,6 +122,7 @@ For more information please consult readme.txt";
     this[this.act]();
 
 }
+
 
 index.prototype = Controller.Controller.prototype;
 exports.index = index;

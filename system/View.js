@@ -2,10 +2,12 @@ let CONFIG = require(process.env.INIT_CONFIG).config;
 let ROOT_PATH = CONFIG.ROOT_PATH;
 let VIEWS_PATH = CONFIG.VIEWS_PATH;
 let VIEWS_CONFIGS_PATH = CONFIG.VIEWS_CONFIGS_PATH;
-let fs = require('fs'), config = require(ROOT_PATH + '/system/config');
+let fs = require('fs'),
+    config = require(ROOT_PATH + '/system/Config');
 let libFile = require(ROOT_PATH + '/system/libfile');
 let htmlhelper = require(`${ROOT_PATH}/system/htmlhelper`);
 let COMMON_PROPERTIES = require(`${ROOT_PATH}/application/views/common/properties`).properties;
+
 /**
  * @class View
  * @structor
@@ -35,7 +37,7 @@ View = function(vw, conf, repl){
 
     }
 
-
+//    console.dir(Config);
     cnf.properties.simpleExtend((new Config(conf)).properties);
     this.ext(cnf.properties, repl);
     let that = this;
@@ -136,7 +138,7 @@ View.prototype.execute = function(){
     };
 
     return { is: function(left, rel, right, body, index, value){
-            console.log(arguments);
+           // console.log(arguments);
             if( left === "index" ){
                 if( right === "odd" && negationMode(left)(index % 2 == 1) ){
                     return body;

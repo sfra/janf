@@ -1,4 +1,5 @@
-    
+ls
+cd    
       <ul>
 [[list
         <li @{if current equals 1 {class="current"}}@><a href="{href}">{li}</a></li>

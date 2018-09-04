@@ -6,11 +6,7 @@
         [[jquery
         <script type="text/javascipt" src="http://code.jquery.com/jquery-{jqueryver}@{if !env equals devel {.min}}@.js"></script>
         jquery]]
-        <script>
-        
-        let valueFromNodeJS=@{valueFromNodeJS}@;    
-        
-        </script>
+       
         </head>
     <body>
         <header>
@@ -25,9 +21,6 @@
 <div id="info">
 </div> 
 <section id="content">@{content}@</section>
-
-</div>
-  
   
   <footer>Szymon Frankowski 2013</footer>
 </body>

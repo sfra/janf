@@ -1,0 +1,6 @@
+<h1>Example of the query</h1>
+<pre>SELECT name, city from clients WHERE name = 'JOHN' AND id>2 </pre>
+    <pre>db.select("name, city").from("clients").where("name = ?<br /> AND id > ?", [["John", "[A-Za-z]+"], ["2", "[0-9]+"]]); </pre>
+<ul>
+        [[results <li>name: {name} city: {city}</li> results]]
+</ul>

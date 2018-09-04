@@ -1,19 +1,8 @@
 /*global require, process*/
 let INIT_CONFIG = require(process.env.INIT_CONFIG);
-let http = require('http'),
-        fs = require('fs'),
+let fs = require('fs'),
         ROOT_PATH = INIT_CONFIG.config.ROOT_PATH,
-        config = ROOT_PATH + '/system/config',
-        View = require(INIT_CONFIG.config.ROOT_PATH + '/system/View'),
-        qs = require('querystring'),
-		libs = require(ROOT_PATH + "/system/libfile");
-//    currentControllerFile = require(INIT_CONFIG.config.ROOT_PATH + "/application/controllers/index.js");
-
-
-
-
-
-let currentController;
+        libs = require(`${ROOT_PATH}/system/libfile`);
 
 
 
@@ -28,19 +17,18 @@ let currentController;
  * @param {String} dane initial data
  * @param {String} mimetype
  */
-Controller = function(req, res, contr, act, GET, dane, mimetype){
+let Controller = function(req, res, contr, act, GET, dane, mimetype){
     let ROOT_PATH = require(process.env.INIT_CONFIG).config.ROOT_PATH;
-    let CONFIG = require(process.env.INIT_CONFIG).config;
-    this._View = require(ROOT_PATH + '/system/View');
-    this._Model = require(ROOT_PATH + '/system/Model/Model');
-    this._ModelSync = require(ROOT_PATH + '/system/Model/ModelSync');
+    this._View = require(`${ROOT_PATH}/system/View`);
+    this._Model = require(`${ROOT_PATH}/system/Model/Model`);
+    this._ModelSync = require(`${ROOT_PATH}/system/Model/ModelSync`);
 
 
     this.req = req;
     this.res = res;
     this.contr = contr;
 
-    if( act == undefined || act == "" ){
+    if( act === undefined || act === '' ){
         this.act = INIT_CONFIG.config.DEFAULT_ACTION;//"index"
     } else{
         this.act = act;
@@ -52,7 +40,7 @@ Controller = function(req, res, contr, act, GET, dane, mimetype){
 
     while( true ){
 
-        if( GET[i] == undefined ){
+        if( GET[i] === undefined ){
             break;
         }
 
@@ -61,7 +49,7 @@ Controller = function(req, res, contr, act, GET, dane, mimetype){
     }
 
     this.dane = dane;
-    if( mimetype == undefined ){
+    if( mimetype === undefined ){
         res.writeHead(200, { 'Content-Type': 'text/html' });
     }
 

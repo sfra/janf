@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>janf 2</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/main_lt700.css" media="(max-width:700px)" />
+    <!-- endbuild -->
+    
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="vendor/require.js" data-main="scripts/main.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if IE]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+    <header class="main-header clearfix"><div>Welcome to janf2</div> <nav id="main-nav">
+        <ul class="clearfix">
+            <li class="active">Overview</li>
+            <li class="extensible">MVC
+                <ul>
+                    <li>Model</li>
+                    <li>View</li>
+                    <li>Controller</li>
+                </ul>
+            </li>
+            <li>Installation</li>
+            <li><a href="additional.html">Additional</a></li>
+        </ul>
+    </nav></header>
+    
+    <section class="main-section">
+            <header>
+                introduction janf2
+            </header>
+        <article>
+            MVC is a framework working on node javascript enviroment.
+            It provides the standard methods known from MVC (model view controller) pattern. It is assumed to be similar to the frameworks known form Java (Java Server Pages) or PHP (Laravel). It is a different approach then in frameworks
+            working on JavaScript.<br /><br />
+            Web page is activated as an instantion of action coitained in a controller.<br /><br />
+            It provides wide support of layouts filled programatically or by the values contained in config files (View).<br /><br />
+            
+            Moreover, it provides full support of some databases (MySql, PostgreSql).<br /><br />
+            It can be achieved by immediate query to the database,
+            or by general CRUD in which janf is .
+            
+            
+        </article>        
+    </section>
+
+<footer id="footer">
+    webpage:
+                <a target="_blank" href="https://github.com/sfra">Szymon Frankowski</a>
+            </footer>
+    
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<!--
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+-->
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+
+    <!-- endbower -->
+    <!-- endbuild -->
+    
+    <!-- build:js scripts/main.js -->
+
+    <!-- endbuild -->
+  </body>
+</html>

@@ -69,20 +69,7 @@ var switchValues=function(arr,key,value,key2,value2,other){
         
     }
  
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 exports.toString=toString;
